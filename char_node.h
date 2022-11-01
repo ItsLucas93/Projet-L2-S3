@@ -2,13 +2,38 @@
 #define UNTITLED_CHAR_NODE_H
 
 // Sous-type des formes fléchis
-
-// Masculin Féminin / Singulier Pluriel / 1e 2e 3e personne / Participe Passé Participe Présent / Indicatif Présent Passé simple Imparfait
 typedef enum
 {
-    Mas, Fem, SG, PL, P1, P2, P3, PPas, PPres, IPres, IPSim, IImp, IFut
+    // Genre (Masculin / Féminin - ADJ/NOM)
+    Mas, Fem,
+    // Nombre (Singulier / Pluriel - ADJ/NOM/VER)
+    SG, PL,
+    // Personne (1e 2e 3e personne - VER)
+    P1, P2, P3,
+
+    // Verbe
+    // (Infinitif)
+    Inf,
+    // (Participe passé / Participe Présent)
+    PPas, PPre,
+    // (Indicatif : Présent / Passé simple / Imparfait / Futur)
+    IPre, IPSim, IImp, IFut,
+    // (Subjonctif : Présent / Passé (??) / Imparfait / Plus que parfait (??)) |
+    SPre, SImp,
+    // Impératif (Présent / Passé(x)) | Pas d'impératif passé
+    ImPre,
+
+    // Nom
+    Inv,
+
+    // Adjectif
+    InvGen,
+
+    // Non classifié
+    // Ver:CPre Ver:Imp
 }sub_type;
 
+/*
 struct s_char_node
 {
     char value;
@@ -19,11 +44,6 @@ struct s_char_node
 
 typedef struct s_char_node t_char_node, *p_char_node;
 
-/***
- * @brief
- * @param
- * @return
- */
 p_char_node createCharNode(char);
-
+*/
 #endif //UNTITLED_CHAR_NODE_H

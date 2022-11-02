@@ -20,6 +20,8 @@ typedef enum
     IPre, IPSim, IImp, IFut,
     // (Subjonctif : Présent / Passé (??) / Imparfait / Plus que parfait (??)) |
     SPre, SImp,
+    // (Conditionnel : Présent)
+    CPre,
     // Impératif (Présent / Passé(x)) | Pas d'impératif passé
     ImPre,
 
@@ -30,7 +32,7 @@ typedef enum
     InvGen,
 
     // Non classifié
-    // Ver:CPre Ver:Imp
+    // Ver:Imp
 }sub_type;
 
 /*

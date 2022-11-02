@@ -23,16 +23,13 @@ typedef enum
     // (Conditionnel : Présent)
     CPre,
     // Impératif (Présent / Passé(x)) | Pas d'impératif passé
-    ImPre,
+    Imp, ImPre,
 
     // Nom
     Inv,
 
     // Adjectif
     InvGen,
-
-    // Non classifié
-    // Ver:Imp
 }sub_type;
 
 /*

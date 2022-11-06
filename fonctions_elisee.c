@@ -54,6 +54,7 @@ p_char_node createCharNode(char val)
 
     nouv = (p_char_node )malloc(sizeof(t_char_node));
     nouv->value = val;
-    nouv->n_node=NULL;
+    nouv->n_node->value=NULL;
+    nouv->n_node->next=NULL;
     return nouv;
 }

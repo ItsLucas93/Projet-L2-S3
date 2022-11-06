@@ -58,3 +58,50 @@ p_char_node createCharNode(char val)
     nouv->n_node->next=NULL;
     return nouv;
 }
+/* fonction qui prend un abre de caractère et ajoute uniquement la forme de base dans l'arbre, 
+(À modifier ajouter un paramètre pour la forme fléchie et l'ajouter aux autres)
+ exemple : parcourir l'arbre commençant par la lettre A, dans les adjectifs
+*/
+
+void ajouter_mot_n_node(p_char_node p_node,char mot[]) {
+    p_char_node p1_node = p_node;//pointeur auxilliaire
+    for (int i = 0; i < strlen(mot); i++) {
+        if (p1_node != NULL) { // si le noeud est non vide
+
+            if (p1_node->value == mot[i]) { // on cherche s'il existe une suite similaire
+                int found = 0;
+                p_cell p_next1 = p1_node->n_node;//pointeur auxilliaire
+                while (p_next1 = !NULL && found == 0) {//on cherche dans tous les sous arbres
+                    if (p_next1->value == mot[i]) {
+                        p_next1 = p_next1->next;
+                        found = 1;
+                    }
+                }
+                if (found == 0) { // si il n'existe pas de sous arbres correspondant
+                    p_char_node nouv = createCharNode(mot[i]);
+                    p_cell p_next2 = p1_node->n_node;//pointeur auxilliaire
+                    while (p_next2->next != NULL)//on va à la fin
+                    {
+                        p_next2->next;
+                    }
+                    p_cell new;          //on assigne une cellule à la fin de la liste
+                    p_next2->next = new;
+                    new->value = nouv;     // on lui donne le nouveau noeud
+                    new->next = NULL;      // fin de la liste
+                }
+            } else// si le noeuds est vide on crée un nouveau noeuds
+            {
+                p_char_node nouv = createCharNode(mot[i]);
+
+                p_cell new;
+                p1_node = new;
+                new->value = nouv;
+                new->next = NULL;
+            }
+            p1_node = p1_node->n_node->next;
+        } else {
+            p_char_node nouv = createCharNode(mot[i]);
+            p1_node = nouv;
+        }
+    }
+}

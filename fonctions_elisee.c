@@ -29,35 +29,44 @@ int afficher_contenu_fichier() {
 
 //Pour node_h prototype
 
-struct s_cell
-{
-    int value;
-    struct s_cell *next;
+struct s_flechie{
+    struct s_flechie *next;
+    char type;
+    char tab[100];
 };
 
+typedef struct s_flechie t_flechie, *p_flechie;
+
+struct s_cell
+{
+    int* value;
+    struct s_cell *next;
+};
 typedef struct s_cell t_cell, *p_cell;
+
+
 
 struct s_char_node
 {
-    char value;
-    p_cell n_node;
-
+  char value;
+  p_cell n_node;
+  p_flechie f_flechie;
 };
+typedef struct s_char_node t_char_node;
 
-typedef struct s_char_node t_char_node, *p_char_node;
 
 // Pour node_c prototype
 
 p_char_node createCharNode(char val)
 {
-    p_char_node nouv;
-
-    nouv = (p_char_node )malloc(sizeof(t_char_node));
-    nouv->value = val;
-    nouv->n_node->value=NULL;
-    nouv->n_node->next=NULL;
-    return nouv;
+  p_char_node nouv;
+  nouv = (int*)malloc(sizeof(t_char_node));
+  nouv->value = val;
+  nouv->n_node=NULL;
+  nouv->f_flechie=NULL;
+  return nouv;
 }
+
 /* fonction qui prend un abre de caractère et ajoute uniquement la forme de base dans l'arbre, 
 (À modifier ajouter un paramètre pour la forme fléchie et l'ajouter aux autres)
  exemple : parcourir l'arbre commençant par la lettre A, dans les adjectifs

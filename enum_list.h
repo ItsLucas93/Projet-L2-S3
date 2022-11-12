@@ -3,10 +3,12 @@
 
 #include "enum_node.h"
 
-typedef struct
+struct s_enum_list
 {
     s_enum_node *head;
     s_enum_node *tail;
-}t_enum_list;
+};
+
+typedef struct s_enum_list t_enum_list *p_enum_list;
 
 #endif //PROJET_ENUM_LIST_H

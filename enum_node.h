@@ -25,11 +25,12 @@ enum sub_type
     // Impératif (Présent / Passé(x)) | Pas d'impératif passé
     Imp, ImPre,
 
-    // Nom
-    Inv,
+    // (Invariant pluriel/Invariant genre - ADJ/NOM)
+    InvPL,InvGen,
+    
+    //Adverbe
+    Adv,
 
-    // Adjectif
-    InvGen,
 };
 
 typedef enum sub_type sub_type;

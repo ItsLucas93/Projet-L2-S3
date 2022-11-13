@@ -1,5 +1,6 @@
-#include "enum_node.h"
 #include <stdlib.h>
+
+#include "enum_list.h"
 
 p_enum_node createEnumNode(sub_type val)
 {

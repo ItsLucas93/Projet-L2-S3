@@ -129,5 +129,36 @@ int afficher_contenu_fichier() {
 }
 
 
+p_flechie_node extraire_random(t_base_tree categorie[]){
+    int size = sizeof(categorie)/sizeof(categorie[0]);
+    srand(time(NULL));
+    int letter=rand()%25;
+    p_base_node node=categorie[letter].root;
+    int suite=1;
+    while(node->nb_forme_flechie==0 || suite==1){
+        suite=0;
+        srand(time(NULL));
+        int i=rand()%25;
+        while(node->fils[i]!=NULL){
+            rand()%25;
+        }
+        node=node->fils[i];
+
+        int est_vide=1;
+        for(int j=0;j<26;j++){
+            if(node->fils[j]=!NULL){
+                est_vide=0;
+            }
+        }
+        if(node->nb_forme_flechie>0 && est_vide==0){
+            suite=rand()%1;
+        }
+    }
+
+    return node->tab_flechie;
+}
+
+
+
 
 

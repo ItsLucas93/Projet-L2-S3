@@ -11,6 +11,6 @@ struct s_base_tree
 typedef struct s_base_tree t_base_tree, *p_base_tree;
 
 t_base_tree createEmptyBaseTree();
-void insertBaseTree(p_base_tree t, char*);
+p_base_node insertBaseTree(p_base_tree t, char*);
 
 #endif //BASE_TREE_H

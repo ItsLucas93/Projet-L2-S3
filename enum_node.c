@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stddef.h>
 
 #include "enum_list.h"
 

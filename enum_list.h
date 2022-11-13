@@ -11,4 +11,6 @@ struct s_enum_list
 
 typedef struct s_enum_list t_enum_list, *p_enum_list;
 
+t_enum_list createEmptyEnumQueue();
+
 #endif //PROJET_ENUM_LIST_H

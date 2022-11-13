@@ -33,10 +33,28 @@ void insertFlechieList(p_base_node pn, char* chaine, sub_type sous_type)
     insertSubType(temp->next->sub_type_list, sous_type);
     pn->nb_forme_flechie++;
 }
+
+//Pour comparer des chaînes de caractère
+
+int comparer_char(char* mot,char*mot2){
+
+    if(strlen(mot)!=strlen(mot2)){
+        return 0;
+    }
+    else{
+        for(int i;i<strlen(mot);i++){
+            if(mot[i]!=mot2[i]){
+                return 0;
+            }
+        }
+        return 1 ;
+    }
+}
+
 //ajoute un type à une forme fléchie
 
 void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie) {
-    p_flechie_node flechie1 = flechie->head;
+    p_flechie_list flechie1 = flechie->head; //pointeur auxiliaire 
     while (flechie1->next != NULL) {
         flechie1 = flechie1->next;
     }

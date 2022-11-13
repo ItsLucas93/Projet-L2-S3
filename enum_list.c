@@ -22,7 +22,11 @@ int isFlechieInList(t_enum_list t, sub_type sous_type)
 
 void insertSubType(t_enum_list* t, sub_type sous_type)
 {
-    if (t->head == NULL) t->head = createEnumNode(sous_type);
+    if (t->head == NULL)
+    {
+        t->head = createEnumNode(sous_type);
+        return;
+    }
 
     p_enum_node temp = t->head;
     while (temp->next != NULL)

@@ -22,10 +22,3 @@ p_base_node insertBaseTree(p_base_tree t, char* val)
     }
     return temp;
 }
-
-/* char randomChar()
-{
-    int i = rand();
-    i = i % 97;
-    return (char) i;
-}*/

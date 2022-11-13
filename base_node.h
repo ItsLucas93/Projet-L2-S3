@@ -15,6 +15,6 @@ struct s_base_node
 
 typedef struct s_base_node t_base_node, *p_base_node;
 
-p_base_node createBaseNode(char);
+p_base_node createBaseNode();
 
 #endif //BASE_NODE

@@ -114,3 +114,45 @@ void ajouter_mot_n_node(p_char_node p_node,char mot[]) {
         }
     }
 }
+
+
+int afficher_contenu_fichier() {
+    //définir un pointeur sur le fichier
+    const char *filename = "../dico_10_lignes.txt";
+    FILE *input_file = fopen(filename, "r");
+
+    //vérifier s'il n'y pas d'erreur avec la taille du fichier
+    struct stat sb;
+    if (stat(filename, &sb) == -1) {
+        perror("stat");
+        exit(EXIT_FAILURE);
+    }
+
+    char c;
+    int nbligne = 0;
+    for (c = getc(input_file); c != EOF; c = getc(input_file)) {
+        if (c == '\n') {
+            nbligne++;
+        }
+    }
+    printf("%d\n", nbligne);
+    fclose(input_file);
+
+    input_file = fopen(filename, "r");
+
+    char forme_base[250];
+
+    char type[100];
+    char forme_flechie[250];
+
+    for (int i = 0; i < nbligne; i++) {
+        fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);
+        printf("%s\t%s\t%s\n", forme_flechie, forme_base, type);
+
+    }
+
+}
+
+
+
+

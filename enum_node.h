@@ -32,11 +32,13 @@ typedef enum
     InvGen,
 }sub_type;
 
-typedef struct
+struct s_enum_node
 {
     sub_type value;
     struct s_enum_node *next;
-} s_enum_node, *p_enum_node;
+};
+
+typedef struct s_enum_node t_enum_node, *p_enum_node;
 
 p_enum_node createEnumNode(sub_type);
 

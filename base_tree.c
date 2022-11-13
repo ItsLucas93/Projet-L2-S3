@@ -1,4 +1,6 @@
 #include <string.h>
+#include <stdlib.h>
+
 #include "base_tree.h"
 
 t_base_tree createEmptyTree()
@@ -7,7 +9,7 @@ t_base_tree createEmptyTree()
 	return t;
 }
 
-void insertBaseTree(p_base_tree t, char* val)
+p_base_node insertBaseTree(p_base_tree t, char* val)
 {
     // ascii a 97 to 122
     unsigned long lenght_word = strlen(val);
@@ -18,4 +20,12 @@ void insertBaseTree(p_base_tree t, char* val)
         temp->fils[i] = createBaseNode();
         temp = temp->fils[i];
     }
+    return temp;
 }
+
+/* char randomChar()
+{
+    int i = rand();
+    i = i % 97;
+    return (char) i;
+}*/

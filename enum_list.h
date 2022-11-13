@@ -6,7 +6,6 @@
 struct s_enum_list
 {
     struct s_enum_node *head;
-    struct s_enum_node *tail;
 };
 
 typedef struct s_enum_list t_enum_list, *p_enum_list;

@@ -9,6 +9,7 @@ p_flechie_node createFlechieNode()
 
     nouv->next = NULL;
     nouv->sub_type_list = createEmptyEnumQueue();
+    // char value[LENGHT_MAX]; // mot sous forme fléchie
 
     return nouv;
 }

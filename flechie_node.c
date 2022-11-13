@@ -1,7 +1,7 @@
+#include <stdlib.h>
+
 #include "flechie_list.h"
 #include "enum_list.h"
-
-#include <stdlib.h>
 
 p_flechie_node createFlechieNode()
 {

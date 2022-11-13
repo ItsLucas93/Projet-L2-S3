@@ -3,7 +3,7 @@
 
 #define ALPHABET_SIZE 26
 
-#include "flechie_queue.h"
+#include "flechie_list.h"
 
 struct s_base_node
 {
@@ -13,7 +13,7 @@ struct s_base_node
     struct s_flechie_queue* tab_flechie;
 };
 
-typedef struct s_base_node t_base_node, *p_base_node;
+typedef struct s_base_node s_base_node, t_base_node, *p_base_node;
 
 p_base_node createBaseNode();
 

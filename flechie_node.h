@@ -12,7 +12,7 @@ struct s_flechie_node
     t_enum_list sub_type_list;
 };
 
-typedef struct s_flechie_node t_flechie_node, *p_flechie_node;
+typedef struct s_flechie_node s_flechie_node, t_flechie_node, *p_flechie_node;
 
 p_flechie_node createFlechieNode();
 

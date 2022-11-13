@@ -2,7 +2,7 @@
 #define PROJET_ENUM_NODE_H
 
 // Sous-type des formes fléchis
-typedef enum
+enum sub_type
 {
     // Genre (Masculin / Féminin - ADJ/NOM)
     Mas, Fem,
@@ -30,7 +30,9 @@ typedef enum
 
     // Adjectif
     InvGen,
-}sub_type;
+};
+
+typedef enum sub_type sub_type;
 
 struct s_enum_node
 {
@@ -38,7 +40,7 @@ struct s_enum_node
     struct s_enum_node *next;
 };
 
-typedef struct s_enum_node t_enum_node, *p_enum_node;
+typedef struct s_enum_node s_enum_node, t_enum_node, *p_enum_node;
 
 p_enum_node createEnumNode(sub_type);
 

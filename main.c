@@ -11,8 +11,12 @@ int main(void)
 {
 
     // Initialisation des arbres
-    t_base_tree verb = createEmptyBaseTree();
-    dosomething(&verb, "Verbe");
+    t_base_tree verb, adj, adv, nom;
+    verb = createEmptyBaseTree();
+    adj = createEmptyBaseTree();
+    adv = createEmptyBaseTree();
+    nom = createEmptyBaseTree();
+    create_typed_tree(&verb, &adj, &adv, &nom);
 
 
     /*

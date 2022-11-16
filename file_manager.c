@@ -5,7 +5,7 @@
 
 #include "file_manager.h"
 
-void dosomething(p_base_tree tree, const char* type_tree) {
+void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree tree_adv, p_base_tree tree_nom) {
     const char *filename = PATH;
     FILE *input_file = fopen(filename, "r");
 
@@ -36,14 +36,23 @@ void dosomething(p_base_tree tree, const char* type_tree) {
         printf("%s\t%s\t%s\n", forme_flechie, forme_base, type);
 
         printf("%s\n", type);
-        if (compare_type(type_tree, "Verbe"))
+        if (compare_type(type, "Ver:"))
         {
-            if (compare_type(type, "Ver:"))
-            {
-                printf("Injection : %s\n", forme_base);
-                insertBaseTree(tree, forme_base);
-            }
-            // if
+            printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_verb, forme_base);
+        }
+        else if (compare_type(type, "Adj:"))
+        {
+            printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_verb, forme_base);
+        }
+        else if (compare_type(type, "Adv:")) {
+            printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_verb, forme_base);
+        }
+        else if (compare_type(type, "Nom:")) {
+            printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_verb, forme_base);
         }
 
         clear_tab_char(forme_base);

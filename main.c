@@ -19,14 +19,14 @@ int main(void)
     create_typed_tree(&verb, &adj, &adv, &nom);
 
 
-    /*
+
     bienvenue();
     menu_principal();
 
     printf("\n-+-+-+-+-+-+-+-+-+\n"
            "Sortie du programme.\n"
            "-+-+-+-+-+-+-+-+-+\n");
-    */
+
 
     return 0;
 }

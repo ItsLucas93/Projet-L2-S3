@@ -128,35 +128,34 @@ int afficher_contenu_fichier() {
 
 }
 
-
-p_flechie_node extraire_random(t_base_tree categorie[]){
-    int size = sizeof(categorie)/sizeof(categorie[0]);
+p_flechie_node extraire_random_flechie(t_base_tree categorie[]){
     srand(time(NULL));
-    int letter=rand()%25;
-    p_base_node node=categorie[letter].root;
+    int letter=rand()%26; //aléatoirement l'abre commençant par une lettre
+    p_base_node node=categorie[letter].root;//on va dans le premier noeud de l'arbre
     int suite=1;
-    while(node->nb_forme_flechie==0 || suite==1){
+    int i;
+    while(node->nb_forme_flechie==0 || suite==1){ //tanque je n'attein pas une forme fléchie et qu'il existe une suite
         suite=0;
-        srand(time(NULL));
-        int i=rand()%25;
-        while(node->fils[i]!=NULL){
-            rand()%25;
+        i=rand()%26;
+        while(node->fils[i]!=NULL){ //je vais dans un fils aléatoirement
+            i=rand()%26;
         }
-        node=node->fils[i];
+        node=node->fils[i]; // je vais dans le fils
 
-        int est_vide=1;
+        int est_vide=1; //je regarde si il possède des fils
         for(int j=0;j<26;j++){
-            if(node->fils[j]=!NULL){
+            if(node->fils[j]!=NULL){
                 est_vide=0;
             }
         }
-        if(node->nb_forme_flechie>0 && est_vide==0){
-            suite=rand()%1;
+        if(node->nb_forme_flechie!=0 && est_vide==0){// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
+            suite=rand()%2;
         }
     }
 
-    return node->tab_flechie;
+    return node->tab_flechie.head;
 }
+
 
 
 

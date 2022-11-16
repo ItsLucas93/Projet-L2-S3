@@ -43,7 +43,7 @@ int comparer_char(char* mot,char*mot2){
         return 0;
     }
     else{
-        for(int i;i<strlen(mot);i++){
+        for(int i = 0;i<strlen(mot);i++){
             if(mot[i]!=mot2[i]){
                 return 0;
             }

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "file_manager.h"
+#include "flechie_list.h"
 
 void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree tree_adv, p_base_tree tree_nom) {
     const char *filename = PATH;

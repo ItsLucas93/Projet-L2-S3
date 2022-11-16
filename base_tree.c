@@ -25,12 +25,12 @@ p_base_node insertBaseTree(p_base_tree t, char* val)
 
         p_base_node temp = t->root[((int) val[0] - 97)];
         // lenght_word - 1 pour ne pas prendre en compte le \0
-        for (unsigned long i = 0; i < lenght_word - 1; i++)
+        for (unsigned long i = 1; i < lenght_word; i++)
         {
-            int idx = ((int) val[i + 1] - 97);
+            int idx = ((int) val[i] - 97);
             temp->fils[idx] = createBaseNode();
             temp = temp->fils[idx];
-            temp->value = val[idx];
+            temp->value = val[i];
         }
 
         return temp;

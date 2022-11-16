@@ -5,7 +5,7 @@
 #include "flechie_list.h"
 #include "base_node.h"
 
-t_flechie_list createEmptyFlechieQueue()
+t_flechie_list createEmptyFlechieList()
 {
     t_flechie_list t;
     t.head = NULL;
@@ -152,3 +152,79 @@ void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie) {
         flechie1->sub_type_list->head->value=Adv;
     }
 }
+
+p_char_type create_list_type(){
+    p_char_type  type_list;
+    type_list = (p_char_type)malloc(sizeof(t_char_type));
+    type_list->next=NULL;
+    return type_list;
+}
+
+int Is_type_list(t_char_type liste,char* type){
+    while(liste.next!=NULL){
+        if(comparer_char(type,liste.type)==1){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+
+char* lire_categorie(char* ligne){
+    char categorie[6];
+    int i=0;
+    while(ligne[i]!=':'){//on saute la catégorie
+        categorie[i]=ligne[i];
+        i++;
+    }
+    categorie[i]='\0';
+    
+    return categorie;
+}
+
+p_char_type lire_type(char* ligne){
+    p_char_type  type_list=create_list_type();
+    p_char_type type_list1=type_list;
+    char mot[6];
+    char tout_type[20];
+    char categorie[6];
+    int i=0;
+    while(ligne[i]!=':'){//on saute la catégorie
+        categorie[i]=ligne[i];
+        i++;
+    }
+
+    categorie[i]='\0';
+    i++;
+    int j=0;//je stocke le reste des types dans tout_type
+    while(ligne[i]!='\0'){
+        tout_type[j]=ligne[i];
+        i++;
+        j++;
+    }
+    i=0;
+
+    while(tout_type[i]!='\0'){//Tant que la chaine n'est pas à la fin
+        j=0;//car le mot reviens toujours à 0;
+        while(tout_type[i]!='+' && tout_type[i]!='\0' && tout_type[i]!=':'){// Tant que le mot n'est pas finit et que la chaine n'est pas à la fin
+            mot[j]=tout_type[i];//récupère le type
+            mot[j+1]='\0';//ajoute le caractère de fin
+        } //on stocke le type dans la liste
+        if(Is_type_list(*type_list,mot)==0){// si le type n'est déjà dans la liste
+            type_list1->type=mot;
+            type_list1->next=create_list_type();
+            type_list=type_list1->next;
+        }
+    }
+    return type_list;
+}
+
+
+void ajouter_type(char* categorie,p_flechie_list flechie,p_char_type type){
+    p_flechie_node flechie_node=flechie->head;
+    while(type->next!=NULL) {
+        ajouter_type_Aux(categorie,type->type, flechie);
+    }
+}
+
+

@@ -7,7 +7,6 @@
 t_base_tree createEmptyBaseTree()
 {
 	t_base_tree t;
-    printf("%d", t.root[0]->value);
     for (int i = 0 ; i < ALPHABET_SIZE ; i++)
     {
         t.root[i] = NULL;

@@ -33,26 +33,26 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
 
     for (int i = 0; i < nbligne; i++) {
         fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);
-        printf("%s\t%s\t%s\n", forme_flechie, forme_base, type);
+        // printf("%s\t%s\t%s\n", forme_flechie, forme_base, type);
 
         printf("%s\n", type);
         if (compare_type(type, "Ver:"))
         {
-            printf("Injection : %s\n", forme_base);
+            // printf("Injection : %s\n", forme_base);
             insertBaseTree(tree_verb, forme_base);
         }
         else if (compare_type(type, "Adj:"))
         {
-            printf("Injection : %s\n", forme_base);
-            insertBaseTree(tree_verb, forme_base);
+            // printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_adj, forme_base);
         }
         else if (compare_type(type, "Adv:")) {
-            printf("Injection : %s\n", forme_base);
-            insertBaseTree(tree_verb, forme_base);
+            // printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_adv, forme_base);
         }
         else if (compare_type(type, "Nom:")) {
-            printf("Injection : %s\n", forme_base);
-            insertBaseTree(tree_verb, forme_base);
+            // printf("Injection : %s\n", forme_base);
+            insertBaseTree(tree_nom, forme_base);
         }
 
         clear_tab_char(forme_base);

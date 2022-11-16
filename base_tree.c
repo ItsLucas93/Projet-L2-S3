@@ -3,6 +3,7 @@
 
 #include "base_tree.h"
 #include <stdio.h>
+#include <time.h>
 
 t_base_tree createEmptyBaseTree()
 {
@@ -63,5 +64,5 @@ p_flechie_node extraire_random_flechie(t_base_tree categorie[]){
         }
     }
 
-    return node-flechie_list.head;
+    return node->flechie_list->head;
 }

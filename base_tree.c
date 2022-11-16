@@ -44,7 +44,7 @@ p_flechie_node extraire_random_flechie(t_base_tree categorie[]){
     p_base_node node=categorie[letter].root;//on va dans le premier noeud de l'arbre
     int suite=1;
     int i;
-    while(node->nb_forme_flechie==0 || suite==1){ //tanque je n'attein pas une forme fléchie et qu'il existe une suite
+    while(node->nb_forme_flechie==0 || suite==1){ //tanque je n'atteint pas une forme fléchie et qu'il existe une suite
         suite=0;
         i=rand()%26;
         while(node->fils[i]!=NULL){ //je vais dans un fils aléatoirement
@@ -63,5 +63,5 @@ p_flechie_node extraire_random_flechie(t_base_tree categorie[]){
         }
     }
 
-    return node->tab_flechie.head;
+    return node-flechie_list.head;
 }

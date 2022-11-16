@@ -56,3 +56,10 @@ dkms.conf
 .idea/*
 cmake-build-debug/*
 CMakeLists.txt
+.ccls-cache/*
+.cache/*
+.breakpoints
+.replit
+main
+Makefile
+replit.*

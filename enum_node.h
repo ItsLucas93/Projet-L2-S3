@@ -52,5 +52,6 @@ struct s_char_type
 typedef struct s_char_type t_char_type, *p_char_type;
 
 p_enum_node createEnumNode(sub_type);
+p_char_type create_list_type();
 
 #endif //PROJET_ENUM_NODE_H

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "file_manager.h"
 #include "base_tree.h"
 
 void bienvenue();
@@ -9,12 +10,19 @@ void menu_principal();
 int main(void)
 {
 
+    // Initialisation des arbres
+    t_base_tree verb = createEmptyBaseTree();
+    dosomething(&verb, "Verbe");
+
+
+    /*
     bienvenue();
     menu_principal();
 
     printf("\n-+-+-+-+-+-+-+-+-+\n"
            "Sortie du programme.\n"
            "-+-+-+-+-+-+-+-+-+\n");
+    */
 
     return 0;
 }

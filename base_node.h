@@ -1,7 +1,7 @@
 #ifndef BASE_NODE
 #define BASE_NODE
 
-#define ALPHABET_SIZE 26
+#define ALPHABET_SIZE 27
 
 #include "flechie_list.h"
 

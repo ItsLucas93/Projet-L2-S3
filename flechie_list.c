@@ -153,12 +153,7 @@ void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie) {
     }
 }
 
-p_char_type create_list_type(){
-    p_char_type  type_list;
-    type_list = (p_char_type)malloc(sizeof(t_char_type));
-    type_list->next=NULL;
-    return type_list;
-}
+
 
 int Is_type_list(t_char_type liste,char* type){
     while(liste.next!=NULL){
@@ -219,12 +214,13 @@ p_char_type lire_type(char* ligne){
     return type_list;
 }
 
-
+//ajoute tous=t ses types à une forme fléchie
 void ajouter_type(char* categorie,p_flechie_list flechie,p_char_type type){
     p_flechie_node flechie_node=flechie->head;
     while(type->next!=NULL) {
         ajouter_type_Aux(categorie,type->type, flechie);
     }
 }
+
 
 

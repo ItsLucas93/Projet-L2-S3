@@ -13,8 +13,9 @@ struct s_flechie_list
 typedef struct s_flechie_list s_flechie_list, t_flechie_list, *p_flechie_list;
 
 p_flechie_list createEmptyFlechieList();
-p_char_type lire_type(char* ligne);
-void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie);
-void ajouter_type(char* categorie,p_flechie_list flechie,p_char_type type);
+int Is_type_list(p_enum_list liste,sub_type type);
+int comparer_char(char* mot,char* mot2);
+sub_type correspondant(char* type);
+void add_type_to_list_type(p_flechie_node pn, const char* ligne);
 
 #endif //FLECHIE_LIST_H

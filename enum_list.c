@@ -3,7 +3,7 @@
 
 #include "enum_list.h"
 
-p_enum_list createEmptyEnumQueue()
+p_enum_list createEmptyEnumList()
 {
     p_enum_list p = (p_enum_list) malloc (sizeof(t_enum_list));
     p->head = NULL;

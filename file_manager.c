@@ -42,19 +42,21 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
         printf("%s", forme_base);
         if (compare_type(type, "Ver:"))
         {
-
-            insertBaseTree(tree_verb, forme_base);
-
+            p_base_node ptr_last_node_base = insertBaseTree(tree_verb, forme_base);
+            p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
         }
         else if (compare_type(type, "Adj:"))
         {
-            insertBaseTree(tree_adj, forme_base);
+            p_base_node ptr_last_node_base = insertBaseTree(tree_adj, forme_base);
+            p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
         }
         else if (compare_type(type, "Adv:")) {
-            insertBaseTree(tree_adv, forme_base);
+            p_base_node ptr_last_node_base = insertBaseTree(tree_adv, forme_base);
+            p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
         }
         else if (compare_type(type, "Nom:")) {
-            insertBaseTree(tree_nom, forme_base);
+            p_base_node ptr_last_node_base = insertBaseTree(tree_nom, forme_base);
+            p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
         }
         clear_tab_char(forme_base);
         clear_tab_type_char(type);
@@ -63,6 +65,38 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
     }
 
 }
+p_flechie_node insertFlechieList(p_base_node pn, char* chaine)
+{
+    p_flechie_list t = pn->flechie_list;
+    if (t->head == NULL)
+    {
+        t->head = createFlechieNode();
+        strcpy(t->head->value, chaine);
+        pn->nb_forme_flechie++;
+        p_flechie_node ptr_node = t->head;
+        return ptr_node;
+    }
+
+    p_flechie_node temp = t->head;
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = createFlechieNode();
+    strcpy(temp->next->value, chaine);
+    pn->nb_forme_flechie++;
+    return temp;
+}
+
+void insertEnumList(p_flechie_node pn, char* chaine)
+{
+    p_enum_list t = pn->sub_type_list;
+    if (t->head == NULL)
+    {
+        t->head = createEnumNode();
+    }
+}
+
 void clear_tab_char(char* mot)
 {
     for (int i = 0; i < ALPHABET_SIZE ; i++)

@@ -1,7 +1,7 @@
 #ifndef PROJET_FILE_MANAGER_H
 #define PROJET_FILE_MANAGER_H
 
-#define PATH "../dictionnaire/dictionnaire_non_accentue.txt"
+#define PATH "../dictionnaire/dico_10_lignes.txt"
 
 #include "base_tree.h"
 
@@ -9,6 +9,6 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
 int compare_type(const char *, const char *);
 void clear_tab_char(char* mot);
 void clear_tab_type_char(char* mot);
-void insertFlechieList(p_base_node pn, char* chaine, sub_type sous_type);
+p_flechie_node insertFlechieList(p_base_node pn, char* chaine);
 
 #endif //PROJET_FILE_MANAGER_H

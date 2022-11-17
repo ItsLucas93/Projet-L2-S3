@@ -55,13 +55,15 @@ char* lire_categorie(char* ligne){
 }
 
 //crée la liste de type de type p_char_type à partir de la ligne
-p_char_type lire_type(char* ligne){
+/*p_char_type read_type(char* ligne){
     p_char_type  type_list=create_list_type();
     p_char_type type_list1=type_list;
-    char mot[6];
+    char mot[6]; //nom
     char tout_type[20];
     char categorie[6];
+
     int i=0;
+
     while(ligne[i]!=':'){//on saute la catégorie
         categorie[i]=ligne[i];
         i++;
@@ -90,7 +92,7 @@ p_char_type lire_type(char* ligne){
         }
     }
     return type_list;
-}
+}*/
 
 //ajoute un type à une forme fléchie
 

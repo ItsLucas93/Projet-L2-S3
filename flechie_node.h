@@ -8,7 +8,7 @@
 struct s_flechie_node
 {
 	struct s_flechie_node* next;
-	char value[LENGHT_MAX]; // mot sous forme fléchie
+	char* value; // mot sous forme fléchie
     t_enum_list *sub_type_list;
 };
 

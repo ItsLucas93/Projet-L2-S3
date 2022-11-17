@@ -9,6 +9,7 @@ p_flechie_node createFlechieNode()
 
     nouv->next = NULL;
     nouv->sub_type_list = createEmptyEnumQueue();
+    nouv->value = (char*) malloc (sizeof (char) * LENGHT_MAX);
     // char value[LENGHT_MAX]; // mot sous forme fléchie
 
     return nouv;

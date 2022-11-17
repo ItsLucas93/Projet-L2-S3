@@ -17,34 +17,6 @@ p_base_tree createEmptyBaseTree()
     return t;
 }
 
-/*p_base_node insertBaseTree(p_base_tree t, char* val){
-    int lenght= strlen(val);
-    if(lenght>0){//on assigne un noeud à sa bonne place
-
-        int idx=((int) val[0] - 97);
-        p_base_node temp=createBaseNode(val[0]);
-
-        t->root[idx]=temp;
-
-
-
-        for(int i=1;i<lenght;i++){
-            idx=((int)val[i]-97);
-            if(temp->fils[idx]==NULL){
-                temp->fils[idx]= createBaseNode(val[i]);
-
-            }
-            temp=temp->fils[idx];
-        }
-        return temp;
-    }
-    else{
-
-        return NULL;
-    }
-}*/
-
-
 p_base_node insertBaseTree(p_base_tree t, char* val)
 {
     // ascii a 97 to 122

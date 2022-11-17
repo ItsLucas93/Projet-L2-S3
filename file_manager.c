@@ -6,31 +6,6 @@
 #include "file_manager.h"
 
 
-void clear_tab_char(char* mot)
-{
-    for (int i = 0; i < ALPHABET_SIZE ; i++)
-    {
-        mot[i] = '\0';
-    }
-}
-
-void clear_tab_type_char(char* mot)
-{
-    for (int i = 0; i < 99 ; i++)
-    {
-        mot[i] = '\0';
-    }
-}
-
-int compare_type(char* type, char* type_ligne){
-    for(int i=0;i<4;i++){
-        if(type[i]!=type_ligne[i]){
-            return 0;
-        }
-    }
-    return 1;
-}
-
 
 void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree tree_adv, p_base_tree tree_nom) {
     const char *filename = PATH;
@@ -88,5 +63,28 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
     }
 
 }
+void clear_tab_char(char* mot)
+{
+    for (int i = 0; i < ALPHABET_SIZE ; i++)
+    {
+        mot[i] = '\0';
+    }
+}
 
+void clear_tab_type_char(char* mot)
+{
+    for (int i = 0; i < 99 ; i++)
+    {
+        mot[i] = '\0';
+    }
+}
+
+int compare_type(const char* type, const char* type_ligne){
+    for(int i=0;i<4;i++){
+        if(type[i]!=type_ligne[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
 

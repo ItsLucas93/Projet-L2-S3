@@ -116,7 +116,7 @@ void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie) {
     node->next=NULL;
     p_enum_list list=(p_enum_list) malloc(sizeof(t_enum_list));
     list->head=node;
-    flechie1->sous_type=list;
+    flechie1->sub_type_list=list;
 
 
     if (comparer_char(categorie,"Adj") == 1 || comparer_char(categorie,"Nom") == 1) {
@@ -170,38 +170,38 @@ void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie) {
         if (comparer_char(type,"IImp")) {
 
             node->value=IImp;
-            flechie1->sous_type->head->value=IImp;
+            flechie1->sub_type_list->head->value=IImp;
         }
         if (comparer_char(type,"IFut")) {
 
             node->value=IFut;
-            flechie1->sous_type->head->value=IFut;
+            flechie1->sub_type_list->head->value=IFut;
         }
         if (comparer_char(type,"SPre")) {
 
             node->value=SPre;
-            flechie1->sous_type->head->value=SPre;
+            flechie1->sub_type_list->head->value=SPre;
         }
         if (comparer_char(type,"SImp")) {
 
             node->value=SImp;
-            flechie1->sous_type->head->value=SImp;
+            flechie1->sub_type_list->head->value=SImp;
         }
         if (comparer_char(type,"CPre")) {
 
             node->value=CPre;
-            flechie1->sous_type->head->value=CPre;
+            flechie1->sub_type_list->head->value=CPre;
         }
         if (comparer_char(type,"ImPre")) {
 
             node->value=ImPre;
-            flechie1->sous_type->head->value=ImPre;
+            flechie1->sub_type_list->head->value=ImPre;
         }
     }
     if (comparer_char(type,"Adv")) {
 
         node->value=Adv;
-        flechie1->sous_type->head->value=Adv;
+        flechie1->sub_type_list->head->value=Adv;
     }
 }
 

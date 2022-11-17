@@ -4,7 +4,33 @@
 #include <string.h>
 
 #include "file_manager.h"
-#include "flechie_list.h"
+
+
+void clear_tab_char(char* mot)
+{
+    for (int i = 0; i < ALPHABET_SIZE ; i++)
+    {
+        mot[i] = '\0';
+    }
+}
+
+void clear_tab_type_char(char* mot)
+{
+    for (int i = 0; i < 99 ; i++)
+    {
+        mot[i] = '\0';
+    }
+}
+
+int compare_type(char* type, char* type_ligne){
+    for(int i=0;i<4;i++){
+        if(type[i]!=type_ligne[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 
 void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree tree_adv, p_base_tree tree_nom) {
     const char *filename = PATH;
@@ -32,86 +58,35 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
     char type[100];
     char forme_flechie[ALPHABET_SIZE];
 
-    for (int i = 0; i < nbligne; i++) {
-        fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);
-        // printf("%s\t%s\t%s\n", forme_flechie, forme_base, type);
+    int i = 0;
+    while ( i < nbligne) {
 
-        printf("%s\n", type);
+        printf("%d %d\n",i,nbligne);
+        fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);
+
+        printf("%s", forme_base);
         if (compare_type(type, "Ver:"))
         {
-            // printf("Injection : %s\n", forme_base);
-            p_base_node temp = insertBaseTree(tree_verb, forme_base);
-            if (temp->flechie_list == NULL)
-            {
-                temp->flechie_list = createEmptyFlechieList();
-            }
-            insertFlechieList(temp, forme_flechie, SG);
+
+            insertBaseTree(tree_verb, forme_base);
+
         }
         else if (compare_type(type, "Adj:"))
         {
-            // printf("Injection : %s\n", forme_base);
             insertBaseTree(tree_adj, forme_base);
         }
         else if (compare_type(type, "Adv:")) {
-            // printf("Injection : %s\n", forme_base);
             insertBaseTree(tree_adv, forme_base);
         }
         else if (compare_type(type, "Nom:")) {
-            // printf("Injection : %s\n", forme_base);
             insertBaseTree(tree_nom, forme_base);
         }
-
         clear_tab_char(forme_base);
         clear_tab_type_char(type);
         clear_tab_char(forme_flechie);
+        i++;
     }
+
 }
 
 
-void insertFlechieList(p_base_node pn, char* chaine, sub_type sous_type)
-{
-    p_flechie_list t = pn->flechie_list;
-    if (t->head == NULL)
-    {
-        t->head = createFlechieNode();
-        strcpy(t->head->value, chaine);
-        insertSubType(t->head->sub_type_list, sous_type);
-        pn->nb_forme_flechie++;
-        return;
-    }
-
-    p_flechie_node temp = t->head;
-    while (temp->next != NULL)
-    {
-        temp = temp->next;
-    }
-    temp->next = createFlechieNode();
-    strcpy(temp->next->value, chaine);
-    insertSubType(temp->next->sub_type_list, sous_type);
-    pn->nb_forme_flechie++;
-}
-
-int compare_type(const char* mot1, const char* mot2)
-{
-    for (int i = 0 ; i < 4 ; i++)
-    {
-        if (mot1[i] != mot2[i]) return 0;
-    }
-    return 1;
-}
-
-void clear_tab_char(char* mot)
-{
-    for (int i = 0; i < ALPHABET_SIZE ; i++)
-    {
-        mot[i] = '\0';
-    }
-}
-
-void clear_tab_type_char(char* mot)
-{
-    for (int i = 0; i < 99 ; i++)
-    {
-        mot[i] = '\0';
-    }
-}

@@ -33,7 +33,15 @@ p_base_node insertBaseTree(p_base_tree t, char* val)
         // lenght_word - 1 pour ne pas prendre en compte le \0
         for (unsigned long i = 1; i < lenght_word; i++)
         {
-            int idx = ((int) val[i] - 97);
+            int idx = 0;
+            if (val[i] == '-' || val[i] == '\'')
+            {
+                idx = 26;
+            }
+            else
+            {
+                idx = ((int) val[i] - 97);
+            }
             if (temp->fils[idx] == NULL)
             {
                 temp->fils[idx] = createBaseNode();

@@ -1,7 +1,7 @@
 #ifndef GENERATEUR_DE_PHRASE_BASE_NODE_H
 #define GENERATEUR_DE_PHRASE_BASE_NODE_H
 
-#define ALPHABET_SIZE 26
+#define ALPHABET_SIZE 27 // 27e node pour les caractères spéciaux '-' '''
 
 #include "flechie_list.h"
 

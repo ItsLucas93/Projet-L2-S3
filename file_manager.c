@@ -40,7 +40,12 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
         if (compare_type(type, "Ver:"))
         {
             // printf("Injection : %s\n", forme_base);
-            insertBaseTree(tree_verb, forme_base);
+            p_base_node temp = insertBaseTree(tree_verb, forme_base);
+            if (temp->flechie_list == NULL)
+            {
+                temp->flechie_list = createEmptyFlechieList();
+            }
+            insertFlechieList(temp, forme_flechie, SG);
         }
         else if (compare_type(type, "Adj:"))
         {
@@ -60,6 +65,30 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
         clear_tab_type_char(type);
         clear_tab_char(forme_flechie);
     }
+}
+
+
+void insertFlechieList(p_base_node pn, char* chaine, sub_type sous_type)
+{
+    p_flechie_list t = pn->flechie_list;
+    if (t->head == NULL)
+    {
+        t->head = createFlechieNode();
+        strcpy(t->head->value, chaine);
+        insertSubType(t->head->sub_type_list, sous_type);
+        pn->nb_forme_flechie++;
+        return;
+    }
+
+    p_flechie_node temp = t->head;
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = createFlechieNode();
+    strcpy(temp->next->value, chaine);
+    insertSubType(temp->next->sub_type_list, sous_type);
+    pn->nb_forme_flechie++;
 }
 
 int compare_type(const char* mot1, const char* mot2)

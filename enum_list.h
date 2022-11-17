@@ -10,7 +10,7 @@ struct s_enum_list
 
 typedef struct s_enum_list s_enum_list, t_enum_list, *p_enum_list;
 
-t_enum_list createEmptyEnumQueue();
+p_enum_list createEmptyEnumQueue();
 int isFlechieInList(t_enum_list, sub_type);
 void insertSubType(t_enum_list*, sub_type);
 

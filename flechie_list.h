@@ -12,7 +12,7 @@ struct s_flechie_list
 
 typedef struct s_flechie_list s_flechie_list, t_flechie_list, *p_flechie_list;
 
-t_flechie_list createEmptyFlechieList();
+p_flechie_list createEmptyFlechieList();
 p_char_type lire_type(char* ligne);
 void ajouter_type_Aux(char* categorie,char* type,p_flechie_list flechie);
 void ajouter_type(char* categorie,p_flechie_list flechie,p_char_type type);

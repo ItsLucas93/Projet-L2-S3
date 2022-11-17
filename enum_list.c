@@ -1,12 +1,13 @@
 #include <stddef.h>
+#include <stdlib.h>
 
 #include "enum_list.h"
 
-t_enum_list createEmptyEnumQueue()
+p_enum_list createEmptyEnumQueue()
 {
-    t_enum_list t;
-    t.head = NULL;
-    return t;
+    p_enum_list p = (p_enum_list) malloc (sizeof(t_enum_list));
+    p->head = NULL;
+    return p;
 }
 
 int isFlechieInList(t_enum_list t, sub_type sous_type)

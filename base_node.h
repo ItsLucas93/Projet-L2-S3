@@ -1,5 +1,5 @@
-#ifndef BASE_NODE
-#define BASE_NODE
+#ifndef GENERATEUR_DE_PHRASE_BASE_NODE_H
+#define GENERATEUR_DE_PHRASE_BASE_NODE_H
 
 #define ALPHABET_SIZE 26
 
@@ -15,6 +15,9 @@ struct s_base_node
 
 typedef struct s_base_node s_base_node, t_base_node, *p_base_node;
 
-p_base_node createBaseNode();
 
-#endif //BASE_NODE
+
+p_base_node createBaseNode();
+int afficher_contenu_fichier();
+
+#endif //GENERATEUR_DE_PHRASE_BASE_NODE_H

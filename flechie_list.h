@@ -1,8 +1,6 @@
 #ifndef FLECHIE_LIST_H
 #define FLECHIE_LIST_H
 
-#define ALPHABET_SIZE 26
-
 #include "flechie_node.h"
 
 struct s_flechie_list

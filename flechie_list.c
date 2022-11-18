@@ -19,7 +19,7 @@ void printFlechieList(p_flechie_list p)
     p_flechie_node temp = p->head;
     while (temp != NULL)
     {
-        printf(" %s:", temp->value);
+        printf("\n%s : ", temp->value);
         printEnumList(temp->sub_type_list);
         temp = temp->next;
     }
@@ -85,14 +85,16 @@ void add_type_to_list_type(p_flechie_node pn, const char* ligne){
         sub_type sous_type = null;
         sous_type = charToEnum(mot);
 
+        if (sous_type == null) break;
+
         if (pn->sub_type_list->head == NULL) {
             pn->sub_type_list->head = createEnumNode();
             type_node = pn->sub_type_list->head;
             type_node->value = sous_type;
         }
 
-        //on stocke le type dans la liste
-        else if ((!(Is_type_list(pn->sub_type_list,sous_type))) && sous_type != null){// si le type n'est pas déjà dans la liste on l'ajoute
+            //on stocke le type dans la liste
+        else if ((!(Is_type_list(pn->sub_type_list,sous_type)))){// si le type n'est pas déjà dans la liste on l'ajoute
 
             type_node->next = createEnumNode();
             type_node = type_node->next;
@@ -100,7 +102,6 @@ void add_type_to_list_type(p_flechie_node pn, const char* ligne){
         }
 
         if (i != '\0') i++;
-        if (sous_type == null) break;
     }
 }
 

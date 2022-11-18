@@ -29,7 +29,7 @@ enum sub_type
     InvPL,InvGen,
     
     //Adverbe
-    Adv,
+    // Adv, <- useless, pas de formes fléchies dans les adverbes puisque invariable
 
     // NULL
     null,

@@ -5,9 +5,7 @@
 
 #include "file_manager.h"
 
-
-
-void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree tree_adv, p_base_tree tree_nom) {
+void create_typed_tree(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree tree_adv, p_base_tree tree_verb) {
     const char *filename = PATH;
     FILE *input_file = fopen(filename, "r");
 
@@ -23,7 +21,7 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
             nbligne++;
         }
     }
-    printf("%d\n", nbligne);
+    printf("Nombres de mots : %d\n", nbligne);
     fclose(input_file);
 
     input_file = fopen(filename, "r");
@@ -39,7 +37,7 @@ void create_typed_tree(p_base_tree tree_verb, p_base_tree tree_adj, p_base_tree 
         printf("%d %d\n",i,nbligne);
         fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);
 
-        printf("%s", forme_base);
+        printf("%s \n", forme_base);
         if (compare_type(type, "Ver:"))
         {
             p_base_node ptr_last_node_base = insertBaseTree(tree_verb, forme_base);
@@ -87,7 +85,7 @@ p_flechie_node insertFlechieList(p_base_node pn, char* chaine)
     temp->next = createFlechieNode();
     strcpy(temp->next->value, chaine);
     pn->nb_forme_flechie++;
-    return temp;
+    return temp->next;
 }
 
 void insertEnumList(p_flechie_node pn, char* chaine)

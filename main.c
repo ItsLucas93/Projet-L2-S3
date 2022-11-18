@@ -16,6 +16,7 @@ int main(){
 
     create_typed_tree(Ver,Adj,Adv,Nom);
 
+    p_base_node temp = isBaseInTree(Nom, "stabilimetre");
     /*
     bienvenue();
     menu_principal();
@@ -53,7 +54,7 @@ void menu_principal()
                "1 - Modèle n°1 : nom - adjectif - verbe - nom\n"
                "2 - Modèle n°2 : nom - 'qui' - verbe - verbe - nom - adjectif\n"
                "3 - Modèle n°3 : (Modèle personnalisé)\n"
-               "4 - Rechercher un mot parmi les formes fléchies\n"
+               "4 - Menu de recherche de mots\n"
                "5 - Quitter le programme.\n");
         scanf("%d", &choix);
         switch (choix) {
@@ -84,4 +85,41 @@ void menu_principal()
             default: printf("\033[1;31mChoix non valide. Veuillez réessayez à nouveau.\033[0m\n");
         }
     } while (choix != 5);
+}
+
+void menu_recherche_de_mots()
+{
+    int choix = -1;
+    do
+    {
+        printf("\033[1mMenu principal. \033[2;34mChoisissez votre menu : \033[0m\n"
+               "1. Rechercher un mot parmi les formes de base\n"
+               "2. Mot aléatoire parmi les formes de base\n"
+               "3. Rechercher un mot parmi les formes fléchies\n"
+               "4 - Quitter le programme.\n");
+        scanf("%d", &choix);
+        switch (choix) {
+            case 1:
+            {
+                // Recherche forme de base
+                break;
+            }
+            case 2:
+            {
+                // Mot aléatoire parmi le formes de base
+                break;
+            }
+            case 3:
+            {
+                // Recherche
+                break;
+            }
+            case 4:
+            {
+                // Appel de la recherche de mot
+                break;
+            }
+            default: printf("\033[1;31mChoix non valide. Veuillez réessayez à nouveau.\033[0m\n");
+        }
+    } while (choix != 4);
 }

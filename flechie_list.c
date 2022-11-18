@@ -2,7 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 #include "flechie_list.h"
+#include "enum_list.h"
 #include "base_node.h"
 
 p_flechie_list createEmptyFlechieList()
@@ -12,97 +14,16 @@ p_flechie_list createEmptyFlechieList()
     return p;
 }
 
-//Pour comparer des chaînes de caractères
-
-int comparer_char(char* mot,char*mot2){
-
-    if(strlen(mot)!=strlen(mot2)){
-        return 0;
-    }
-    else{
-        for(int i = 0;i<strlen(mot);i++){
-            if(mot[i]!=mot2[i]){
-                return 0;
-            }
-        }
-        return 1 ;
+void printFlechieList(p_flechie_list p)
+{
+    p_flechie_node temp = p->head;
+    while (temp != NULL)
+    {
+        printf(" %s:", temp->value);
+        printEnumList(temp->sub_type_list);
+        temp = temp->next;
     }
 }
-
-//renvoie un type correspondant à sa chaîne de caractère
-sub_type correspondant(char* type){
-    sub_type sous_type = null;
-    //Partie NOM et ADJ
-    if (comparer_char(type,"Mas") == 1) {
-        sous_type=Mas;
-    }
-    else if (comparer_char(type,"Fem") == 1) {
-        sous_type=Fem;
-    }
-    else if (comparer_char(type,"SG") == 1) {
-        sous_type=SG;
-    }
-    else if (comparer_char(type,"PL") == 1) {
-        sous_type=PL;
-    }
-    else if (comparer_char(type,"InvPL") == 1 ) {
-        sous_type=InvPL;
-    }
-    else if (comparer_char(type,"InvGen") == 1) {
-        sous_type=InvPL;
-    }
-
-    //Partie VER
-    else if (comparer_char(type,"P1") == 1) {
-        sous_type=P1;
-    }
-    else if (comparer_char(type,"P2") == 1) {
-        sous_type=P2;
-    }
-    else if (comparer_char(type,"P3") == 1) {
-        sous_type=P3;
-    }
-    else if (comparer_char(type,"Inf") == 1) {
-        sous_type=Inf;
-    }
-    else if (comparer_char(type,"PPas") == 1) {
-        sous_type=PPas;
-    }
-    else if (comparer_char(type,"PPre") == 1) {
-        sous_type=PPre;
-    }
-    else if (comparer_char(type,"IPre") == 1) {
-        sous_type=IPre;
-    }
-    else if (comparer_char(type,"IPSim") == 1) {
-        sous_type=IPSim;
-    }
-    else if (comparer_char(type,"IImp") == 1) {
-        sous_type=IImp;
-    }
-    else if (comparer_char(type,"IFut") == 1) {
-        sous_type=IFut;
-    }
-    else if (comparer_char(type,"SPre") == 1) {
-        sous_type=SPre;
-    }
-    else if (comparer_char(type,"SImp") == 1) {
-        sous_type=SImp;
-       }
-    else if (comparer_char(type,"CPre") == 1) {
-        sous_type=CPre;
-    }
-    else if (comparer_char(type,"ImPre") == 1) {
-        sous_type=ImPre;
-    }
-    /*
-    //Partie Adv
-    if (comparer_char(type,"Adv") == 1) {
-        sous_type=Adv;
-    }*/
-    return sous_type;
-}
-
 
 
 //verifie si un type est déjà présent dans une liste de type de type t_enum_node
@@ -162,7 +83,7 @@ void add_type_to_list_type(p_flechie_node pn, const char* ligne){
         }
 
         sub_type sous_type = null;
-        sous_type=correspondant(mot);
+        sous_type = charToEnum(mot);
 
         if (pn->sub_type_list->head == NULL) {
             pn->sub_type_list->head = createEnumNode();

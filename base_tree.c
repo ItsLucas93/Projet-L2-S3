@@ -1,14 +1,23 @@
 #include <string.h>
 #include <stdlib.h>
-#include "base_tree.h"
-#include "base_node.h"
 #include <stdio.h>
 #include <time.h>
 
+#include "base_tree.h"
+#include "base_node.h"
 
 p_base_tree createEmptyBaseTree()
+/*
+ * Fonction: createEmptyBaseTree
+ * -----------------
+ * Crée l'arbre des formes de bases et renvoie un pointeur sur le premier étage de cet arbre
+ * Etage de taille ALPHABET_SIZE (26 + 1, 1 pour rentrer les caractères spéciaux : ' et -)
+ *
+ * t: p_base_tree
+ */
 {
-    p_base_tree t=(p_base_tree)malloc(sizeof(t_base_tree));
+    p_base_tree t = (p_base_tree) malloc (sizeof(t_base_tree));
+
     for (int i = 0 ; i < ALPHABET_SIZE ; i++)
     {
         t->root[i] = NULL;
@@ -17,49 +26,89 @@ p_base_tree createEmptyBaseTree()
     return t;
 }
 
-p_base_node insertBaseTree(p_base_tree t, char* val)
+p_base_node insertBaseTree(p_base_tree t, char* mot)
+/*
+ * Fonction: insertBaseTree
+ * -----------------
+ * Injecte dans l'arbre le mot
+ * L'indice est associé à la lettre (a = 0; b = 1 ; ... ; z = 25 ; '- = 26);
+ * L'entrée des mots provient du fichier dictionnaire non accentué, qui ont des caractères minuscules
+ *
+ * Pré-condition : Si le mot est vide (lenght_word == 0), renvoie un pointeur NULL
+ * Première étape : Positionnement au premier étage (crée un t_base_node si n'existe pas)
+ * Deuxième étape : Construit avec le reste des lettres les nodes suivants
+ * Fin : Retourne un pointeur vers le dernier node
+ *
+ * t: p_base_tree
+ * mot: char*
+ * idx: int
+ * temp: p_base_node
+ */
 {
-    // ascii a 97 to 122
-    unsigned long lenght_word = strlen(val);
+    unsigned long lenght_word = strlen(mot);
 
     if (lenght_word) {
 
-        if (t->root[((int) val[0] - 97)] == NULL){
-            t->root[((int) val[0] - 97)] = createBaseNode();
-        }
-        t->root[((int) val[0] - 97)]->value = val[0];
+        // On gère les indices par le code ASCII (en sachant que les entrés du fichier son des lettres minuscules)
+        int idx = (int) mot[0] - 97;
 
-        p_base_node temp = t->root[((int) val[0] - 97)];
-        // lenght_word - 1 pour ne pas prendre en compte le \0
+        // Si le node n'est pas occupé par une lettre (donc est NULL), on crée le node
+        if (t->root[idx] == NULL)
+        {
+            t->root[idx] = createBaseNode();
+            t->root[idx]->value = mot[0];
+        }
+
+        p_base_node temp = t->root[idx];
+
         for (unsigned long i = 1; i < lenght_word; i++)
         {
-            int idx = 0;
-            if (val[i] == '-' || val[i] == '\'')
-            {
-                idx = 26;
-            }
-            else
-            {
-                idx = ((int) val[i] - 97);
-            }
+            idx = 0;
+
+            // Traitement de cas des deux caractères spéciaux ' et -
+            if (mot[i] == '-' || mot[i] == '\'') idx = 26;
+            else idx = ((int) mot[i] - 97);
+
+            // Si le node n'est pas occupé par une lettre (donc est NULL), on crée le node
             if (temp->fils[idx] == NULL)
             {
                 temp->fils[idx] = createBaseNode();
                 temp = temp->fils[idx];
-                temp->value = val[i];
+                temp->value = mot[i];
             }
+            // Sinon on va dans le node pusqu'il existe déjà
             else
             {
                 temp = temp->fils[idx];
             }
         }
 
+        // On retourne un pointeur vers le dernier node pour traiter la partie des formes fléchies
         return temp;
     }
+
+    // On retourne NULL si la chaîne de caractère est vide
     return NULL;
 }
 
 p_base_node isBaseInTree(p_base_tree t, const char* chaine)
+/*
+ * Fonction: isBaseInTree
+ * -----------------
+ * Vérifie si le mot de base est dans l'arbre.
+ * L'indice est associé à la lettre (a = 0; b = 1 ; ... ; z = 25 ; '- = 26);
+ * L'entrée des mots provient d'une entrée utilisateur, qui ont des caractères minuscules
+ *
+ * Pré-condition : Si le mot est vide (lenght_word == 0), renvoie un pointeur NULL
+ * Un filtre de l'indice est faite en fonction si le caractère est majuscule ou miniscule à chaque étape
+ * Si à la fin du parcours, on atteint un node avec un nb_forme_flechie != 0, alors on renvoie le pointeur sur ce node, sinon on renvoie un pointeur NULL
+ *
+ *
+ * t: p_base_tree
+ * chaine: const char*
+ * idx: int
+ * pn: p_base_node
+ */
 {
     if (strlen(chaine) == 0) return NULL;
 
@@ -134,33 +183,69 @@ p_base_node isBaseInTree(p_base_tree t, const char* chaine)
     return pn;
 }
 
-void recherche_forme_de_base(p_base_tree verb, p_base_tree adj, p_base_tree adv, p_base_tree nom, const char* chaine)
+void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, const char* chaine)
+/*
+ * Fonction: rechercheFormeBase
+ * -----------------
+ * Recherche dans l'arbre une forme de base saisie par l'utilisateur
+ *
+ * Parcours les 4 arbres et affiche les formes fléchies ainsi que leurs types
+ *
+ * Verb: p_base_tree
+ * Adj: p_base_tree
+ * Adv: p_base_tree
+ * Nom: p_base_tree
+ * chaine: const char*
+ */
 {
-    if (strlen(chaine) == 0)
+    if (strlen(chaine) == 0 || (strlen(chaine) > 25))
     {
-        printf("Chaîne vide !\n");
+        printf("Chaîne incompatible (votre chaine est = 0 ou > à 25) !\n");
         return;
     }
 
-    p_base_node pn = isBaseInTree(nom, chaine);
+    p_base_node pn = isBaseInTree(Nom, chaine);
     if (pn == NULL)
     {
         printf("Forme de base non trouvé dans les noms.\n");
     }
-    pn = isBaseInTree(adj, chaine);
+    else
+    {
+        printf("%s trouvé ! Type : Nom\n"
+               "Forme(s) fléchie(s) : ", chaine);
+        printFlechieList(pn->flechie_list);
+    }
+    pn = isBaseInTree(Adj, chaine);
     if (pn == NULL)
     {
         printf("Forme de base non trouvé dans les adjectifs.\n");
     }
-    pn = isBaseInTree(adv, chaine);
+    else
+    {
+        printf("%s trouvé ! Type : Adjectif\n"
+               "Forme fléchie : ", chaine);
+        printFlechieList(pn->flechie_list);
+    }
+    pn = isBaseInTree(Adv, chaine);
     if (pn == NULL)
     {
         printf("Forme de base non trouvé dans les adverbres.\n");
     }
-    pn = isBaseInTree(verb, chaine);
+    else
+    {
+        printf("%s trouvé ! Type : Adverbe\n"
+               "Forme fléchie : %s:Adverbe");
+    }
+    pn = isBaseInTree(Verb, chaine);
     if (pn == NULL)
     {
         printf("Forme de base non trouvé dans les verbes.\n");
+    }
+    else
+    {
+        printf("%s trouvé ! Type : Verbe\n"
+               "Forme fléchie : ", chaine);
+        printFlechieList(pn->flechie_list);
     }
 }
 

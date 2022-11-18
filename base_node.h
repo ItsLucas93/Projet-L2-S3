@@ -15,9 +15,6 @@ struct s_base_node
 
 typedef struct s_base_node s_base_node, t_base_node, *p_base_node;
 
-
-
 p_base_node createBaseNode();
-int afficher_contenu_fichier();
 
 #endif //GENERATEUR_DE_PHRASE_BASE_NODE_H

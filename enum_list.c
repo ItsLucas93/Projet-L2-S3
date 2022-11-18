@@ -1,18 +1,27 @@
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "enum_list.h"
 
 p_enum_list createEmptyEnumList()
+/*
+ * Fonction: createEmptyEnumList
+ * -----------------
+ * Crée une liste des sous_types des formes fléchies (Ex: SG / PL ...)
+ * Tête initialsié à NULL
+ *
+ * p: p_enum_list
+ */
 {
     p_enum_list p = (p_enum_list) malloc (sizeof(t_enum_list));
     p->head = NULL;
     return p;
 }
 
-int isFlechieInList(t_enum_list t, sub_type sous_type)
+int isFlechieInList(p_enum_list t, sub_type sous_type)
 {
-    p_enum_node temp = t.head;
+    p_enum_node temp = t->head;
     while (temp != NULL && temp->value != sous_type)
     {
         temp = temp->next;
@@ -21,18 +30,21 @@ int isFlechieInList(t_enum_list t, sub_type sous_type)
     else return 0;
 }
 
-void insertSubType(t_enum_list* t, sub_type sous_type)
+void printEnumList(p_enum_list p)
+/*
+ * Fonction: printEnumList
+ * -----------------
+ * Affiche les sous_types des formes fléchies
+ *
+ * p: p_enum_list
+ * temp: p_enum_node
+ */
 {
-    if (t->head == NULL)
-    {
-        t->head = createEnumNode(sous_type);
-        return;
-    }
+    p_enum_node temp = p->head;
 
-    p_enum_node temp = t->head;
-    while (temp->next != NULL)
+    while(temp != NULL)
     {
+        printf("%s + ", EnumToChar(temp->value));
         temp = temp->next;
     }
-    temp->next = createEnumNode(sous_type);
 }

@@ -57,7 +57,7 @@ void add_type_to_list_type(p_flechie_node pn, const char* ligne){
     i++;
 
 
-    char tout_type[40];
+    char tout_type[80];
 
     int j=0;//je stocke le reste des types dans tout_type
     while(ligne[i]!='\0'){

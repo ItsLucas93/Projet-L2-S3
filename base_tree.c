@@ -234,7 +234,7 @@ void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_ba
     else
     {
         printf("%s trouvé ! Type : Adverbe\n"
-               "Forme fléchie : %s:Adverbe");
+               "Forme fléchie : %s:Adverbe", chaine, chaine);
     }
     pn = isBaseInTree(Verb, chaine);
     if (pn == NULL)

@@ -63,7 +63,7 @@ void create_typed_tree(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree t
         clear_tab_char(forme_flechie);
         i++;
     }
-
+    fclose(input_file);
 }
 p_flechie_node insertFlechieList(p_base_node pn, char* chaine)
 {

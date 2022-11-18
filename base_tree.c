@@ -59,7 +59,110 @@ p_base_node insertBaseTree(p_base_tree t, char* val)
     return NULL;
 }
 
+p_base_node isBaseInTree(p_base_tree t, const char* chaine)
+{
+    if (strlen(chaine) == 0) return NULL;
 
+    p_base_node pn = NULL;
+
+    // Indexation selon le tableau
+    // Positionnement sur le premier étage
+    // Caractère majuscule
+    int idx = 0;
+    if ((int) chaine[0] >= 65 && (int) chaine[0] <= 90)
+    {
+        idx = (int) chaine[0] - 65;
+        pn = t->root[idx];
+    }
+    // Caractères - et '
+    else if (chaine[0] == '-' || chaine[0] == '\'')
+    {
+        idx = ALPHABET_SIZE - 1;
+        pn = t->root[idx];
+    }
+    // Caractère minuscule
+    else if ((int) chaine[0] >= 97 && (int) chaine[0] <= 122)
+    {
+        idx = (int) chaine[0] - 97;
+        pn = t->root[idx];
+    }
+    // Caractère non répertorié - Sortie de Programme
+    else
+    {
+        return NULL;
+    }
+
+    // Vérification
+    if (pn == NULL) return NULL; // Pas de valeur sur la case du tableau
+
+    // Parcours du tableau
+    for (int i = 1; i < strlen(chaine); i++)
+    {
+        // Indexation selon le tableau
+        // Caractère majuscule
+        idx = 0;
+        if ((int) chaine[i] >= 65 && (int) chaine[i] <= 90)
+        {
+            idx = (int) chaine[i] - 65;
+            pn = pn->fils[idx];
+        }
+        // Caractères - et '
+        else if (chaine[i] == '-' || chaine[i] == '\'')
+        {
+            idx = ALPHABET_SIZE - 1;
+            pn = pn->fils[idx];
+        }
+        // Caractère minuscule
+        else if ((int) chaine[i] >= 97 && (int) chaine[i] <= 122)
+        {
+            idx = (int) chaine[i] - 97;
+            pn = pn->fils[idx];
+        }
+        // Caractère non répertorié - Sortie de Programme
+        else
+        {
+            return NULL;
+        }
+
+        // Vérification
+        if (pn == NULL) return NULL; // Pas de valeur sur la case du tableau
+    }
+
+    // Fin de la forme de base ? si pas de forme flechie, mot incomplet
+    if (pn->nb_forme_flechie == 0) return NULL;
+
+    return pn;
+}
+
+void recherche_forme_de_base(p_base_tree verb, p_base_tree adj, p_base_tree adv, p_base_tree nom, const char* chaine)
+{
+    if (strlen(chaine) == 0)
+    {
+        printf("Chaîne vide !\n");
+        return;
+    }
+
+    p_base_node pn = isBaseInTree(nom, chaine);
+    if (pn == NULL)
+    {
+        printf("Forme de base non trouvé dans les noms.\n");
+    }
+    pn = isBaseInTree(adj, chaine);
+    if (pn == NULL)
+    {
+        printf("Forme de base non trouvé dans les adjectifs.\n");
+    }
+    pn = isBaseInTree(adv, chaine);
+    if (pn == NULL)
+    {
+        printf("Forme de base non trouvé dans les adverbres.\n");
+    }
+    pn = isBaseInTree(verb, chaine);
+    if (pn == NULL)
+    {
+        printf("Forme de base non trouvé dans les verbes.\n");
+    }
+}
 
 /*
 p_flechie_node extraire_random_flechie(t_base_tree categorie){

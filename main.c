@@ -18,6 +18,7 @@ int main()
     p_base_tree Ver = createEmptyBaseTree();
 
     create_typed_tree(Nom, Adj, Adv, Ver);
+    printf("Init terminé");
 
 
     char chaine[30];

@@ -34,10 +34,10 @@ void create_typed_tree(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree t
     int i = 0;
     while ( i < nbligne) {
 
-        printf("%d %d\n",i,nbligne);
+        // printf("%d %d\n",i,nbligne);
         fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);
 
-        printf("%s \n", forme_base);
+        // printf("%s \n", forme_base);
         if (compare_type(type, "Ver:"))
         {
             p_base_node ptr_last_node_base = insertBaseTree(tree_verb, forme_base);

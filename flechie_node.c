@@ -5,7 +5,7 @@
 
 p_flechie_node createFlechieNode()
 {
-    p_flechie_node nouv = (p_flechie_node) malloc (sizeof (t_flechie_list));
+    p_flechie_node nouv = (p_flechie_node) malloc (sizeof (t_flechie_node));
 
     nouv->next = NULL;
     nouv->sub_type_list = createEmptyEnumList();

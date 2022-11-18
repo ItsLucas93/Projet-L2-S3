@@ -15,7 +15,7 @@ p_enum_node createEnumNode()
  * pn: p_enum_node
  */
 {
-    p_enum_node nouv = (p_enum_node) malloc (sizeof(t_enum_list));
+    p_enum_node nouv = (p_enum_node) malloc (sizeof(t_enum_node));
     nouv->next = NULL;
 
     return nouv;

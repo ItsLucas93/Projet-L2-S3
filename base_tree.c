@@ -200,53 +200,61 @@ void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_ba
 {
     if (strlen(chaine) == 0 || (strlen(chaine) > 25))
     {
-        printf("Chaîne incompatible (votre chaine est = 0 ou > à 25) !\n");
+        printf("Chaine incompatible (votre chaine est = 0 ou > à 25) !\n");
         return;
     }
 
     p_base_node pn = isBaseInTree(Nom, chaine);
+    printf("-=-=-=-=-=-= Nom =-=-=-=-=-=-\n");
     if (pn == NULL)
     {
-        printf("Forme de base non trouvé dans les noms.\n");
+        printf("Forme de base non trouve.\n");
     }
     else
     {
-        printf("%s trouvé ! Type : Nom\n"
-               "Forme(s) fléchie(s) : ", chaine);
+        printf("%s trouve ! Type : Nom\n"
+               "Forme(s) flechie(s) : \n", chaine);
         printFlechieList(pn->flechie_list);
     }
+    
     pn = isBaseInTree(Adj, chaine);
+    printf("-=-=-=-=-=-= Ajdectif =-=-=-=-=-=-\n");
     if (pn == NULL)
     {
-        printf("Forme de base non trouvé dans les adjectifs.\n");
+        printf("Forme de base non trouve.\n");
     }
     else
     {
-        printf("%s trouvé ! Type : Adjectif\n"
-               "Forme fléchie : ", chaine);
+        printf("%s trouve ! Type : Adjectif\n"
+               "Forme(s) flechie(s) : \n", chaine);
         printFlechieList(pn->flechie_list);
     }
+
     pn = isBaseInTree(Adv, chaine);
+    printf("-=-=-=-=-=-= Adverbe =-=-=-=-=-=-\n");
     if (pn == NULL)
     {
-        printf("Forme de base non trouvé dans les adverbres.\n");
+        printf("Forme de base non trouve.\n");
     }
     else
     {
-        printf("%s trouvé ! Type : Adverbe\n"
-               "Forme fléchie : %s:Adverbe", chaine, chaine);
+        printf("%s trouve ! Type : Adverbe\n"
+               "Forme(s) flechie(s) : \n%s:Adverbe", chaine, chaine);
     }
+
     pn = isBaseInTree(Verb, chaine);
+    printf("-=-=-=-=-=-= Verbe =-=-=-=-=-=-\n");
     if (pn == NULL)
     {
-        printf("Forme de base non trouvé dans les verbes.\n");
+        printf("Forme de base non trouve.\n");
     }
     else
     {
-        printf("%s trouvé ! Type : Verbe\n"
-               "Forme fléchie : ", chaine);
+        printf("%s trouve ! Type : Verbe\n"
+               "Forme(s) flechie(s) : \n", chaine);
         printFlechieList(pn->flechie_list);
     }
+    printf("-=-=-=-=-=-= Fin de la recherche =-=-=-=-=-=-\n");
 }
 
 /*

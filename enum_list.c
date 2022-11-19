@@ -47,5 +47,5 @@ void printEnumList(p_enum_list p)
         printf("%s ", EnumToChar(temp->value));
         temp = temp->next;
     }
-    printf(";");
+    printf(";\n");
 }

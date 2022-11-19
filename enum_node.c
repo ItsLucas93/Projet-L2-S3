@@ -63,25 +63,25 @@ char* EnumToChar(sub_type sous_type)
  */
 {
     if (sous_type == Mas) return "Masculin";
-    else if (sous_type == Fem) return "Féminin";
+    else if (sous_type == Fem) return "Feminin";
     else if (sous_type == SG) return "Singulier";
     else if (sous_type == PL) return "Pluriel";
-    else if (sous_type == P1) return "1ère personne";
+    else if (sous_type == P1) return "1e personne";
     else if (sous_type == P2) return "2e personne";
     else if (sous_type == P3) return "3e personne";
 
     else if (sous_type == Inf) return "Infinitif";
-    else if (sous_type == PPas) return "Participe Passé";
-    else if (sous_type == PPre) return "Participe Présent";
-    else if (sous_type == IPre) return "Indicatif Présent";
-    else if (sous_type == IPSim) return "Indicatif Passé Simple";
+    else if (sous_type == PPas) return "Participe Passe";
+    else if (sous_type == PPre) return "Participe Present";
+    else if (sous_type == IPre) return "Indicatif Present";
+    else if (sous_type == IPSim) return "Indicatif Passe Simple";
     else if (sous_type == IImp) return "Indicatif Imparfait";
     else if (sous_type == IFut) return "Indicatif Futur";
-    else if (sous_type == SPre) return "Subjonctif Présent";
+    else if (sous_type == SPre) return "Subjonctif Present";
     else if (sous_type == SImp) return "Subjonctif Imparfait";
-    else if (sous_type == CPre) return "Conditionnel Présent";
+    else if (sous_type == CPre) return "Conditionnel Present";
     else if (sous_type == Imp) return "Imp";
-    else if (sous_type == ImPre) return "Impératif Présent";
+    else if (sous_type == ImPre) return "Imperatif Present";
 
     else if (sous_type == InvPL) return "InvPL";
     else if (sous_type == InvGen) return "InvGen";

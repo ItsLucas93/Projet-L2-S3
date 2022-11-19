@@ -19,7 +19,7 @@ void printFlechieList(p_flechie_list p)
     p_flechie_node temp = p->head;
     while (temp != NULL)
     {
-        printf("\n%s : ", temp->value);
+        printf("%s : ", temp->value);
         printEnumList(temp->sub_type_list);
         temp = temp->next;
     }

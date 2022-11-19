@@ -18,15 +18,12 @@ int main()
     p_base_tree Ver = createEmptyBaseTree();
 
     create_typed_tree(Nom, Adj, Adv, Ver);
-    printf("Init terminé");
 
+    printf("Initialisation des arbres termine.\n");
 
-    char chaine[30];
-    gets(chaine);
-    rechercheFormeBase(Ver, Adj, Adv, Nom, chaine);
     // Menu principal
-    // bienvenue();
-    // menu_principal(Nom, Adj, Adv, Ver);
+    bienvenue();
+    menu_principal(Nom, Adj, Adv, Ver);
     printf("\n-+-+-+-+-+-+-+-+-+\n"
            "Sortie du programme.\n"
            "-+-+-+-+-+-+-+-+-+\n");
@@ -42,7 +39,7 @@ void bienvenue()
  * Underline générée par : https://fsymbols.com/generators/wide/
  */
 {
-    printf("\n\nGénérateur de phrase\n");
+    printf("\n\nGenerateur de phrase\n");
 }
 
 void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tree Ver)
@@ -53,11 +50,12 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
  */
 {
     char choix = '-';
-    while(choix != 5) {
+    do
+    {
         printf("Menu principal. Choisissez votre menu :\n"
-               "1 - Modèle n°1 : nom - adjectif - verbe - nom\n"
-               "2 - Modèle n°2 : nom - 'qui' - verbe - verbe - nom - adjectif\n"
-               "3 - Modèle n°3 : (Modèle personnalisé)\n"
+               "1 - Modele 1 : nom - adjectif - verbe - nom\n"
+               "2 - Modele 2 : nom - 'qui' - verbe - verbe - nom - adjectif\n"
+               "3 - Modele 3 : (Modele personnalise)\n"
                "4 - Menu de recherche de mots\n"
                "5 - Quitter le programme.\n");
         scanf(" %c", &choix);
@@ -84,9 +82,9 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
                 break;
             }
             default:
-                printf("Choix non valide. Veuillez réessayez à nouveau.\n");
+                printf("Choix non valide. Veuillez reessayez à nouveau.\n");
         }
-    }
+    } while (choix != '5');
 }
 
 void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tree Ver)
@@ -94,10 +92,10 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
     char choix = '-';
     do
     {
-        printf("Menu principal. Choisissez votre menu :\n"
+        printf("Menu recherche de mots. Faites votre choix :\n"
                "1. Rechercher un mot parmi les formes de base\n"
-               "2. Mot aléatoire parmi les formes de base\n"
-               "3. Rechercher un mot parmi les formes fléchies\n"
+               "2. Mot aleatoire parmi les formes de base\n"
+               "3. Rechercher un mot parmi les formes flechies\n"
                "4 - Quitter le programme.\n");
         scanf(" %c", &choix);
         switch (choix) {
@@ -106,7 +104,7 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
                 // Recherche forme de base
                 char chaine[30];
 
-                printf("Insérez un mot (- pour sortir) : ");
+                printf("Inserez un mot : ");
                 scanf(" %s", chaine);
                 rechercheFormeBase(Ver, Adj, Adv, Nom, chaine);
 
@@ -127,7 +125,7 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
                 // Appel de la recherche de mot
                 break;
             }
-            default: printf("\033[1;31mChoix non valide. Veuillez réessayez à nouveau.\033[0m\n");
+            default: printf("Choix non valide. Veuillez reessayez à nouveau.\n");
         }
     } while (choix != '4');
 }

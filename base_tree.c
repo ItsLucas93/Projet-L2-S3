@@ -308,7 +308,7 @@ char* extraire_random_base(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p
     if (select_tree == 0)
     {
         do {
-            select_tree = rand() % 4;
+            select_tree = rand() % 5;
         } while (select_tree == 0);
     }
 

@@ -9,9 +9,9 @@ void create_sentence_1(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_base
 
     srand(time(NULL));
 
-    int genre = rand() % (1);
-    int nombre = rand() % (1);
-    int determinant = rand() % (1);
+    int genre = rand() % 2;
+    int nombre = rand() % 2;
+    int determinant = rand() % 2;
 
     if (nombre == 0) {
         if (genre == 0) {

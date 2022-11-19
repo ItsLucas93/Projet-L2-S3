@@ -51,7 +51,8 @@ void create_typed_tree(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree t
             add_type_to_list_type(ptr_flechie_node, type);
         }
         else if (compare_type(type, "Adv")) {
-            insertBaseTree(tree_adv, forme_base);
+            p_base_node ptr_last_node_base = insertBaseTree(tree_adv, forme_base);
+            insertFlechieList(ptr_last_node_base, forme_flechie);
         }
         else if (compare_type(type, "Nom:")) {
             p_base_node ptr_last_node_base = insertBaseTree(tree_nom, forme_base);

@@ -297,19 +297,80 @@ p_flechie_node extraire_random_flechie(p_base_tree tree)
     return node->flechie_list->head; //on renvoie les formes fléchies
 }
 
-char* extraire_random_base(t_base_tree categorie[]) {
-    char base[12];
+char* extraire_random_base(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, int select_tree){
+    char* base = (char*) malloc (ALPHABET_SIZE * sizeof(char));
+    for (int z = 0; z < ALPHABET_SIZE ; z++) base[z] = '\0';
+
     int c = 0;
+
     srand(time(NULL));
-    int letter = rand() % 26;   //aléatoirement l'abre commençant par une lettre
-    p_base_node node = categorie[letter].root;   //on va dans le premier noeud de l'arbre
+
+    if (select_tree == 0)
+    {
+        do {
+            select_tree = rand() % 4;
+        } while (select_tree == 0);
+    }
+
+    int letter = rand () % 26;   //aléatoirement l'abre commençant par une lettre
+    p_base_node node = NULL;
+
+    switch (select_tree)  //on va dans le premier noeud de l'arbre
+    {
+        case 1:
+        {
+            while (Verb->root[letter] == NULL){
+                letter = rand() % 26;
+            }
+            node = Verb->root[letter];
+            break;
+        }
+
+        case 2:
+        {
+            while (Adj->root[letter] == NULL){
+                letter = rand() % 26;
+            }
+            node = Adj->root[letter];
+            break;
+        }
+
+        case 3:
+        {
+            while (Adv->root[letter] == NULL){
+                letter = rand() % 26;
+            }
+            node = Adv->root[letter];
+            break;
+        }
+
+        case 4:
+        {
+            while (Nom->root[letter] == NULL){
+                letter = rand() % 26;
+            }
+            node = Nom->root[letter];
+            break;
+        }
+
+        default:
+        {
+            while (Nom->root[letter] == NULL){
+                letter = rand() % 26;
+            }
+            node = Nom->root[letter];
+        }
+    }
+
     int suite = 1;
-    while (node->nb_forme_flechie == 0 ||
-           suite == 1) {//tanque je n'atteint pas une forme fléchie et qu'il existe une suite
+    int i;
+
+    while (node->nb_forme_flechie == 0 || suite == 1) {//tanque je n'atteint pas une forme fléchie et qu'il existe une suite
         suite = 0;
-        int i = rand() % 26;
-        while (node->fils[i] != NULL) {  //je vais dans un fils aléatoirement
-            rand() % 25;
+
+        i = rand() % 26;
+        while (node->fils[i] == NULL) {  //je vais dans un fils aléatoirement
+            i = rand() % 26;
         }
         base[c] = node->value; //je stocke le char dans la forme de base
         node = node->fils[i];  // je vais dans le fils
@@ -321,10 +382,13 @@ char* extraire_random_base(t_base_tree categorie[]) {
                 est_vide = 0;
             }
         }
-        if (node->nb_forme_flechie > 0 &&
-            est_vide == 0) {// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
+        if (node->nb_forme_flechie > 0 && est_vide == 0) {// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
             suite = rand() % 2;
         }
     }
+    //la boucle s'arrête à l'avant dernière lettre et ne prends pas la dernière lettre, parce que dans le dernier noeud la forme fléchie est présente
+    base[c] = node->value;
+
+    base[c + 1] = '\0';
     return base; //je renvoie la forme de base
 }

@@ -15,4 +15,6 @@ p_base_node insertBaseTree(p_base_tree t, char*);
 p_base_node isBaseInTree(p_base_tree t, const char* chaine);
 void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, const char* chaine);
 
+char* extraire_random_base(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, int select_tree);
+
 #endif //BASE_TREE_H

@@ -25,8 +25,8 @@ int main()
     bienvenue();
     menu_principal(Nom, Adj, Adv, Ver);
     printf("\n-+-+-+-+-+-+-+-+-+\n"
-           "Sortie du programme.\n"
-           "-+-+-+-+-+-+-+-+-+\n");
+          "Sortie du programme.\n"
+          "-+-+-+-+-+-+-+-+-+\n");
 
     return 0;
 }
@@ -113,6 +113,8 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
             case '2':
             {
                 // Mot aléatoire parmi le formes de base
+                char* test = extraire_random_base(Ver, Adj, Adv, Nom, 0);
+                printf("\nMot aleatoire : %s\n", test);
                 break;
             }
             case '3':

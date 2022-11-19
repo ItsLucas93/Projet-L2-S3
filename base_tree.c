@@ -257,62 +257,74 @@ void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_ba
     printf("-=-=-=-=-=-= Fin de la recherche =-=-=-=-=-=-\n");
 }
 
-/*
-p_flechie_node extraire_random_flechie(t_base_tree categorie){
-    srand(time(NULL));
-    int letter=rand()%26; //aléatoirement l'abre commençant par une lettre
-    p_base_node node=categorie.root;//on va dans le premier noeud de l'arbre
-    int suite=1;
-    int i;
-    while(node->nb_forme_flechie==0 || suite==1){ //tanque je n'atteint pas une forme fléchie et qu'il existe une suite
-        suite=0;
-        i=rand()%26;
-        while(node->fils[i]!=NULL){ //je vais dans un fils aléatoirement
-            i=rand()%26;
-        }
-        node=node->fils[i]; // je vais dans le fils
 
-        int est_vide=1; //je regarde si il possède des fils
-        for(int j=0;j<26;j++){
-            if(node->fils[j]!=NULL){
-                est_vide=0;
+p_flechie_node extraire_random_flechie(p_base_tree tree)
+{
+    srand(time(NULL));
+    int letter = rand() % 26; // aléatoirement l'abre commençant par une lettre
+
+    p_base_node node = tree->root[letter]; // on va dans le premier noeud de l'arbre
+
+    int suite = 1;
+    int i;
+
+    while (node->nb_forme_flechie == 0 || suite == 1)
+    { //tanque je n'atteint pas une forme fléchie et qu'il existe une suite
+        suite = 0;
+        i = rand() % 26;
+
+        while(node->fils[i] != NULL)
+        { //je vais dans un fils aléatoirement
+            i = rand() % 26;
+        }
+
+        node = node->fils[i]; // je vais dans le fils
+
+        int est_vide = 1; //je regarde si il possède des fils
+        for (int j = 0 ; j < 26 ; j++)
+        {
+            if (node->fils[j] != NULL)
+            {
+                est_vide = 0;
             }
         }
-        if(node->nb_forme_flechie!=0 && est_vide==0){// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
-            suite=rand()%2;
+        if(node->nb_forme_flechie != 0 && est_vide == 0)
+        {// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
+            suite = rand() % 2;
         }
     }
 
-    return node->flechie_list.head; //on renvoie les formes fléchies
+    return node->flechie_list->head; //on renvoie les formes fléchies
 }
 
-char* extraire_random_base(t_base_tree categorie[]){
+char* extraire_random_base(t_base_tree categorie[]) {
     char base[12];
-    int c=0;
+    int c = 0;
     srand(time(NULL));
-    int letter=rand()%26;   //aléatoirement l'abre commençant par une lettre
-    p_base_node node=categorie[letter].root;   //on va dans le premier noeud de l'arbre
-    int suite=1;
-    while(node->nb_forme_flechie==0 || suite==1){//tanque je n'atteint pas une forme fléchie et qu'il existe une suite
-        suite=0;
-        int i=rand()%26;
-        while(node->fils[i]!=NULL){  //je vais dans un fils aléatoirement
-            rand()%25;
+    int letter = rand() % 26;   //aléatoirement l'abre commençant par une lettre
+    p_base_node node = categorie[letter].root;   //on va dans le premier noeud de l'arbre
+    int suite = 1;
+    while (node->nb_forme_flechie == 0 ||
+           suite == 1) {//tanque je n'atteint pas une forme fléchie et qu'il existe une suite
+        suite = 0;
+        int i = rand() % 26;
+        while (node->fils[i] != NULL) {  //je vais dans un fils aléatoirement
+            rand() % 25;
         }
-        base[c]=node->value; //je stocke le char dans la forme de base
-        node=node->fils[i];  // je vais dans le fils
+        base[c] = node->value; //je stocke le char dans la forme de base
+        node = node->fils[i];  // je vais dans le fils
         c++;                // je passe au caractère suivant
 
-        int est_vide=1;  //je regarde si il possède des fils
-        for(int j=0;j<26;j++){
-            if(node->fils[j]!=NULL){
-                est_vide=0;
+        int est_vide = 1;  //je regarde si il possède des fils
+        for (int j = 0; j < 26; j++) {
+            if (node->fils[j] != NULL) {
+                est_vide = 0;
             }
         }
-        if(node->nb_forme_flechie>0 && est_vide==0){// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
-            suite=rand()%2;
+        if (node->nb_forme_flechie > 0 &&
+            est_vide == 0) {// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
+            suite = rand() % 2;
         }
     }
     return base; //je renvoie la forme de base
 }
-*/

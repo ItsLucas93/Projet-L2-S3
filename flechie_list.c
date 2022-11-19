@@ -1,17 +1,37 @@
 #include <stddef.h>
-#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 #include "flechie_list.h"
 #include "enum_list.h"
-#include "base_node.h"
 
 p_flechie_list createEmptyFlechieList()
 {
     p_flechie_list p = (p_flechie_list) malloc (sizeof(t_flechie_list));
     p->head = NULL;
     return p;
+}
+
+char* isVerbFlechieInList(p_flechie_node pn, sub_type temps, sub_type nombre, sub_type pluriel)
+{
+    p_flechie_node temp = pn;
+    while (temp != NULL)
+    {
+        if (isEnumInList(temp->sub_type_list, temps) && isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return pn->value;
+        else temp = temp->next;
+    }
+    return NULL;
+}
+
+char* isGenreFlechieInList(p_flechie_node pn, sub_type nombre, sub_type pluriel)
+{
+    p_flechie_node temp = pn;
+    while (temp != NULL)
+    {
+        if (isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return pn->value;
+        else temp = temp->next;
+    }
+    return NULL;
 }
 
 void printFlechieList(p_flechie_list p)
@@ -24,20 +44,6 @@ void printFlechieList(p_flechie_list p)
         temp = temp->next;
     }
 }
-
-
-//verifie si un type est déjà présent dans une liste de type de type t_enum_node
-int Is_type_list(p_enum_list l,sub_type type){
-    p_enum_node node = l->head;
-    while(node != NULL){
-        if(type == node->value){
-            return 1;
-        }
-        node = node->next;
-    }
-    return 0;
-}
-
 
 //crée la liste de type de type p_char_type à partir de la ligne
 void add_type_to_list_type(p_flechie_node pn, const char* ligne){
@@ -94,7 +100,7 @@ void add_type_to_list_type(p_flechie_node pn, const char* ligne){
         }
 
             //on stocke le type dans la liste
-        else if ((!(Is_type_list(pn->sub_type_list,sous_type)))){// si le type n'est pas déjà dans la liste on l'ajoute
+        else if ((!(isEnumInList(pn->sub_type_list, sous_type)))){// si le type n'est pas déjà dans la liste on l'ajoute
 
             type_node->next = createEnumNode();
             type_node = type_node->next;

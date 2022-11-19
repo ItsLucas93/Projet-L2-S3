@@ -19,7 +19,7 @@ p_enum_list createEmptyEnumList()
     return p;
 }
 
-int isFlechieInList(p_enum_list t, sub_type sous_type)
+int isEnumInList(p_enum_list t, sub_type sous_type)
 {
     p_enum_node temp = t->head;
     while (temp != NULL && temp->value != sous_type)

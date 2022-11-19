@@ -12,7 +12,7 @@ typedef struct s_enum_list s_enum_list, t_enum_list, *p_enum_list;
 
 
 p_enum_list createEmptyEnumList();
-int isFlechieInList(p_enum_list, sub_type);
+int isEnumInList(p_enum_list, sub_type);
 void printEnumList(p_enum_list);
 
 #endif //PROJET_ENUM_LIST_H

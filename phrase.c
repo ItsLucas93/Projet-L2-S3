@@ -15,44 +15,49 @@ void create_sentence_1(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_base
 
     if (nombre == 0) {
         if (genre == 0) {
-            if (determinant == 0) printf("le ");
-            else printf("un ");
+            if (determinant == 0) printf("Le");
+            else printf("Un");
             for (int i = 0; i < 4; i++) {
+                srand(i);
                 if (i == 0 || i == 3) create_word_genre(Nom, Mas, SG);
-                else if (i == 1) create_word_verb(Ver, (rand() % 4) + 10, SG, P3);
-                else if (i == 2) create_word_genre(Adj, Mas, SG);
+                else if (i == 2) create_word_verb(Ver, (rand() % 4) + 10, SG, P3);
+                else if (i == 1) create_word_genre(Adj, Mas, SG);
             }
         } else {
-            if (determinant == 0) printf("la ");
-            else printf("une ");
+            if (determinant == 0) printf("La");
+            else printf("Une");
             for (int i = 0; i < 4; i++) {
+                srand(i);
                 if (i == 0 || i == 3) create_word_genre(Nom, Fem, SG);
-                else if (i == 1) create_word_verb(Ver, (rand() % 4) + 10, SG, P3);
-                else if (i == 2) create_word_genre(Adj, Fem, SG);
+                else if (i == 2) create_word_verb(Ver, (rand() % 4) + 10, SG, P3);
+                else if (i == 1) create_word_genre(Adj, Fem, SG);
             }
         }
     } else {
-        if (determinant == 0) printf("les ");
-        else printf("des ");
+        if (determinant == 0) printf("Les");
+        else printf("Des");
         if (genre == 0) {
             for (int i = 0; i < 4; i++) {
+                srand(i);
                 if (i == 0 || i == 3) create_word_genre(Nom, Mas, PL);
-                else if (i == 1) create_word_verb(Ver, (rand() % 4) + 10, PL, P3);
-                else if (i == 2) create_word_genre(Adj, Mas, PL);
+                else if (i == 2) create_word_verb(Ver, (rand() % 4) + 10, PL, P3);
+                else if (i == 1) create_word_genre(Adj, Mas, PL);
             }
         } else {
             for (int i = 0; i < 4; i++) {
+                srand(i);
                 if (i == 0 || i == 3) create_word_genre(Nom, Fem, PL);
-                else if (i == 1) create_word_verb(Ver, (rand() % 4) + 10, PL, P3);
-                else if (i == 2) create_word_genre(Adj, Fem, PL);
+                else if (i == 2) create_word_verb(Ver, (rand() % 4) + 10, PL, P3);
+                else if (i == 1) create_word_genre(Adj, Fem, PL);
             }
         }
     }
+    printf(".\n");
 }
 
 void create_word_verb(p_base_tree Verb, sub_type temps, sub_type nombre, sub_type pluriel) {
 
-    srand(time(NULL));
+    srand(time(NULL) + rand() % 1000);
 
     int letter = rand () % 26;   //aléatoirement l'abre commençant par une lettre
     p_base_node node = NULL;
@@ -75,7 +80,7 @@ void create_word_verb(p_base_tree Verb, sub_type temps, sub_type nombre, sub_typ
             char* mot = isVerbFlechieInList(node->flechie_list->head, temps, nombre, pluriel);
             if (mot != NULL)
             {
-                printf("%s ", mot);
+                printf(" %s", mot);
                 suite = 0;
             }
             else
@@ -83,6 +88,7 @@ void create_word_verb(p_base_tree Verb, sub_type temps, sub_type nombre, sub_typ
                 letter = rand () % 26;
                 while (Verb->root[letter] == NULL) letter = rand() % 26;
                 node = Verb->root[letter];
+                suite = 1;
             }
         }
     }
@@ -90,7 +96,7 @@ void create_word_verb(p_base_tree Verb, sub_type temps, sub_type nombre, sub_typ
 
 void create_word_genre(p_base_tree tree, sub_type nombre, sub_type pluriel) {
 
-    srand(time(NULL));
+    srand(time(NULL) + rand() % 1000);
 
     int letter = rand () % 26;   //aléatoirement l'abre commençant par une lettre
     p_base_node node = NULL;
@@ -113,7 +119,7 @@ void create_word_genre(p_base_tree tree, sub_type nombre, sub_type pluriel) {
             char* mot = isGenreFlechieInList(node->flechie_list->head, nombre, pluriel);
             if (mot != NULL)
             {
-                printf("%s ", mot);
+                printf(" %s", mot);
                 suite = 0;
             }
             else
@@ -121,6 +127,7 @@ void create_word_genre(p_base_tree tree, sub_type nombre, sub_type pluriel) {
                 letter = rand () % 26;
                 while (tree->root[letter] == NULL) letter = rand() % 26;
                 node = tree->root[letter];
+                suite = 1;
             }
         }
     }

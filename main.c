@@ -4,6 +4,7 @@
 
 #include <sys/stat.h>
 #include "file_manager.h"
+#include "phrase.h"
 
 void bienvenue();
 void menu_principal(p_base_tree, p_base_tree, p_base_tree, p_base_tree);
@@ -62,7 +63,7 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
         switch (choix) {
             case '1': {
                 // Appel de la génération 1
-
+                create_sentence_1(Ver, Adj, Adv, Nom);
                 break;
             }
             case '2': {

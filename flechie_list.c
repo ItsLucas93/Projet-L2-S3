@@ -17,7 +17,7 @@ char* isVerbFlechieInList(p_flechie_node pn, sub_type temps, sub_type nombre, su
     p_flechie_node temp = pn;
     while (temp != NULL)
     {
-        if (isEnumInList(temp->sub_type_list, temps) && isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return pn->value;
+        if (isEnumInList(temp->sub_type_list, temps) && isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return temp->value;
         else temp = temp->next;
     }
     return NULL;
@@ -28,7 +28,7 @@ char* isGenreFlechieInList(p_flechie_node pn, sub_type nombre, sub_type pluriel)
     p_flechie_node temp = pn;
     while (temp != NULL)
     {
-        if (isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return pn->value;
+        if (isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return temp->value;
         else temp = temp->next;
     }
     return NULL;

@@ -560,7 +560,7 @@ void research_flechie_form(char* flechie,p_base_tree categorie){
                     i=0;
                     depile_char(mot);
                 }
-                //sinon on passe au suivant
+                    //sinon on passe au suivant
                 else{
                     i++;
                     temp=search->value->fils[i];
@@ -574,7 +574,7 @@ void research_flechie_form(char* flechie,p_base_tree categorie){
                         found=1;
                         break;
                     }
-                    // si la forme fléchie n'est pas présent dans le noeud
+                        // si la forme fléchie n'est pas présent dans le noeud
                     else{
                         // si toute les fils sont nuls on dépile search dans un_search
                         if(fils_vide(temp)){
@@ -583,7 +583,7 @@ void research_flechie_form(char* flechie,p_base_tree categorie){
                             i=0;
                             depile_char(mot);
                         }
-                        //si il existe une suite on passe au prochain noeuds
+                            //si il existe une suite on passe au prochain noeuds
                         else{
                             empile_node(un_search,temp);
                             empile_node(search,temp->fils[0]);

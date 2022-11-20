@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "flechie_list.h"
 #include "enum_list.h"
@@ -11,6 +12,7 @@ p_flechie_list createEmptyFlechieList()
     p->head = NULL;
     return p;
 }
+
 
 char* isVerbFlechieInList(p_flechie_node pn, sub_type temps, sub_type nombre, sub_type pluriel)
 {
@@ -29,6 +31,17 @@ char* isGenreFlechieInList(p_flechie_node pn, sub_type nombre, sub_type pluriel)
     while (temp != NULL)
     {
         if (isEnumInList(temp->sub_type_list, nombre) && isEnumInList(temp->sub_type_list, pluriel)) return temp->value;
+        else temp = temp->next;
+    }
+    return NULL;
+}
+
+p_flechie_node isFlechieCharInList(p_flechie_list pn, const char* chaine)
+{
+    p_flechie_node temp = pn->head;
+    while (temp != NULL)
+    {
+        if (comparer_char(temp->value, chaine)) return temp;
         else temp = temp->next;
     }
     return NULL;

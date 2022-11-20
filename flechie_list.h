@@ -15,6 +15,8 @@ void printFlechieList(p_flechie_list p);
 
 char* isVerbFlechieInList(p_flechie_node pn, sub_type temps, sub_type nombre, sub_type pluriel);
 char* isGenreFlechieInList(p_flechie_node pn, sub_type nombre, sub_type pluriel);
+p_flechie_node isFlechieCharInList(p_flechie_list pn, const char* chaine);
+
 void add_type_to_list_type(p_flechie_node, const char*);
 
 #endif //FLECHIE_LIST_H

@@ -258,6 +258,40 @@ void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_ba
 }
 
 
+void rechercheFormeFlechie(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, const char* chaine)
+{
+
+    srand(time(NULL));
+
+    int idx = (int) chaine[0];
+    p_base_node pn = Verb->root[idx];
+    for (int i = 1 ; i <= strlen(chaine) / 2 ; i++)
+    {
+        idx = (int) chaine[i];
+        pn = pn->fils[(int) chaine[idx]];
+    }
+
+    p_base_node temp = pn;
+
+    while(temp->nb_forme_flechie != 0)
+    {
+        idx = rand() % 26;
+        while(temp->fils[idx] == NULL)
+        {
+            idx = rand() % 26;
+        }
+        temp = temp->fils[idx];
+    }
+
+    p_flechie_node temp_flechie_node = isFlechieCharInList(temp->flechie_list, chaine);
+    if (temp_flechie_node != NULL)
+    {
+        printf("-=-=-=-=-=-= Forme Fléchie trouvé =-=-=-=-=-=-\n"
+               "%s : ", temp_flechie_node->value);
+        printFlechieList(pn->flechie_list);
+    }
+}
+
 p_flechie_node extraire_random_flechie(p_base_tree tree)
 {
     srand(time(NULL));
@@ -296,6 +330,7 @@ p_flechie_node extraire_random_flechie(p_base_tree tree)
 
     return node->flechie_list->head; //on renvoie les formes fléchies
 }
+
 
 char* extraire_random_base(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, int select_tree){
     char* base = (char*) malloc (ALPHABET_SIZE * sizeof(char));

@@ -123,6 +123,7 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
             case '3':
             {
                 // Recherche
+                rechercheFormeFlechie(Ver, Adj, Adv, Nom);
                 break;
             }
             case '4':

@@ -1,5 +1,5 @@
-#ifndef PROJET_ENUM_LIST_H
-#define PROJET_ENUM_LIST_H
+#ifndef ENUM_LIST_H
+#define ENUM_LIST_H
 
 #include "enum_node.h"
 
@@ -15,4 +15,4 @@ p_enum_list createEmptyEnumList();
 int isEnumInList(p_enum_list, sub_type);
 void printEnumList(p_enum_list);
 
-#endif //PROJET_ENUM_LIST_H
+#endif //ENUM_LIST_H

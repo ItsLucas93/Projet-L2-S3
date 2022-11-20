@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#include <sys/stat.h>
 #include "file_manager.h"
 #include "phrase.h"
 
@@ -20,15 +17,14 @@ int main()
 
     create_typed_tree(Nom, Adj, Adv, Ver);
 
-    setbuf(stdout, 0);
     printf("Initialisation des arbres termine.\n");
 
     // Menu principal
     bienvenue();
     menu_principal(Nom, Adj, Adv, Ver);
     printf("\n-+-+-+-+-+-+-+-+-+\n"
-          "Sortie du programme.\n"
-          "-+-+-+-+-+-+-+-+-+\n");
+           "Sortie du programme.\n"
+           "-+-+-+-+-+-+-+-+-+\n");
 
     return 0;
 }
@@ -48,13 +44,17 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
 /*
  * Fonction: menu_principal
  * -----------------
- * Menu principal, l'utilisateur à trois choix possible
+ * Menu principal, l'utilisateur à cinq choix possible
+ * 1 - Modele 1 : nom - adjectif - verbe - nom
+ * 2 - Modele 2 : nom - 'qui' - verbe - verbe - nom - adjectif
+ * 3 - Modele 3 : (Modele personnalise) adverbe - nom - adjectif - verbe
+ * 4 - Menu de recherche de mots
+ * 5 - Quitter le programme.
  */
 {
     char choix = '-';
     do
     {
-        setbuf(stdout, 0);
         printf("Menu principal. Choisissez votre menu :\n"
                "1 - Modele 1 : nom - adjectif - verbe - nom\n"
                "2 - Modele 2 : nom - 'qui' - verbe - verbe - nom - adjectif\n"
@@ -65,17 +65,17 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
         switch (choix) {
             case '1': {
                 // Appel de la génération 1
-                create_sentence_1(Ver, Adj, Adv, Nom);
+                createSentenceModel1(Ver, Adj, Adv, Nom);
                 break;
             }
             case '2': {
-                create_sentence_2(Ver, Adj, Adv, Nom);
                 // Appel de la génération 2
+                createSentenceModel2(Ver, Adj, Adv, Nom);
                 break;
             }
             case '3': {
                 // Appel de la génération 3
-                create_sentence_3(Ver, Adj, Adv, Nom);
+                createSentenceModel3(Ver, Adj, Adv, Nom);
                 break;
             }
             case '4': {
@@ -93,35 +93,41 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
 }
 
 void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tree Ver)
+/*
+ * Fonction: menu_recherche_de_mots
+ * -----------------
+ * Menu de recherche de mots, l'utilisateur à trois choix possible
+ * 1. Rechercher un mot parmi les formes de base
+ * 2. Mot aleatoire parmi les formes de base
+ * 3. Rechercher un mot parmi les formes flechies
+ * 4. Retour au menu principal
+ */
 {
     char choix = '-';
     do
     {
-        setbuf(stdout, 0);
         printf("Menu recherche de mots. Faites votre choix :\n"
-               "1. Rechercher un mot parmi les formes de base\n"
-               "2. Mot aleatoire parmi les formes de base\n"
-               "3. Rechercher un mot parmi les formes flechies\n"
-               "4 - Quitter le programme.\n");
+               "1 - Rechercher un mot parmi les formes de base\n"
+               "2 - Mot aleatoire parmi les formes de base\n"
+               "3 - Rechercher un mot parmi les formes flechies\n"
+               "4 - Retour au menu principal.\n");
         scanf(" %c", &choix);
         switch (choix) {
             case '1':
             {
                 // Recherche forme de base
-                /*
-                char chaine_1[30];
-                setbuf(stdout, 0);
+                char chaine[30];
+
                 printf("Inserez un mot : ");
-                scanf(" %s", chaine_1);
-                rechercheFormeBase(Ver, Adj, Adv, Nom, chaine_1);
-                */
-                printf("// Implémentation en suspend par manque de temps\n");
+                scanf(" %s", chaine);
+                rechercheFormeBase(Ver, Adj, Adv, Nom, chaine);
+
                 break;
             }
             case '2':
             {
                 // Mot aléatoire parmi le formes de base
-                char* test = extraire_random_base(Ver, Adj, Adv, Nom, 0);
+                char* test = extraireRandomBase(Ver, Adj, Adv, Nom, 0);
                 printf("\nMot aleatoire : %s\n", test);
                 break;
             }

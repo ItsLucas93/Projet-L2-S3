@@ -1,12 +1,19 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 
 #include "flechie_list.h"
 #include "enum_list.h"
 
 p_flechie_list createEmptyFlechieList()
+/*
+ * Fonction: createEmptyFlechieList
+ * -----------------
+ * Crée une liste des fléchies (node qui va stocker une liste de sous_types et la chaîne de caractère associée).
+ * Tête initialsié à NULL.
+ *
+ * p: p_flechie_list
+ */
 {
     p_flechie_list p = (p_flechie_list) malloc (sizeof(t_flechie_list));
     p->head = NULL;
@@ -15,6 +22,18 @@ p_flechie_list createEmptyFlechieList()
 
 
 char* isVerbFlechieInList(p_flechie_node pn, sub_type temps, sub_type nombre, sub_type pluriel)
+/*
+ * Fonction: isVerbFlechieInList
+ * -----------------
+ * Crée une liste des fléchies (node qui va stocker une liste de sous_types et la chaîne de caractère associée).
+ * Tête initialsié à NULL.
+ *
+ * pn: p_flechie_node
+ * temp: p_flechie_node
+ * temps: sub_type
+ * nombre: sub_type
+ * pluriel: sub_type
+ */
 {
     p_flechie_node temp = pn;
     while (temp != NULL)
@@ -26,6 +45,17 @@ char* isVerbFlechieInList(p_flechie_node pn, sub_type temps, sub_type nombre, su
 }
 
 char* isGenreFlechieInList(p_flechie_node pn, sub_type nombre, sub_type pluriel)
+/*
+ * Fonction: isGenreFlechieInList
+ * -----------------
+ * Cherche si les sous_type sont présents dans la liste.
+ * Renvoie la chaîne de caractère associé si la condition est validée, sinon renvoie un pointeur NULL.
+ *
+ * pn: p_flechie_node
+ * temp: p_flechie_node
+ * nombre: sub_type
+ * pluriel: sub_type
+ */
 {
     p_flechie_node temp = pn;
     while (temp != NULL)
@@ -37,17 +67,35 @@ char* isGenreFlechieInList(p_flechie_node pn, sub_type nombre, sub_type pluriel)
 }
 
 p_flechie_node isFlechieCharInList(p_flechie_list pn, const char* chaine)
+/*
+ * Fonction: isFlechieCharInList
+ * -----------------
+ * Cherche si la chaîne de caractère est présente dans la liste.
+ * Renvoie un pointeur associé à ce node, sinon renvoie un pointeur NULL.
+ *
+ * pn: p_flechie_node
+ * temp: p_flechie_node
+ * chaine: const char*
+ */
 {
     p_flechie_node temp = pn->head;
     while (temp != NULL)
     {
-        if (comparer_char(temp->value, chaine)) return temp;
+        if (compareChar(temp->value, chaine)) return temp;
         else temp = temp->next;
     }
     return NULL;
 }
 
 void printFlechieList(p_flechie_list p)
+/*
+ * Fonction: printFlechieList
+ * -----------------
+ * Affiche les formes fléchies présentes dans la liste.
+ *
+ * p: p_flechie_list
+ * temp: p_flechie_node
+ */
 {
     p_flechie_node temp = p->head;
     while (temp != NULL)
@@ -58,8 +106,27 @@ void printFlechieList(p_flechie_list p)
     }
 }
 
-//crée la liste de type de type p_char_type à partir de la ligne
-void add_type_to_list_type(p_flechie_node pn, const char* ligne){
+void addTypeToFlechieList(p_flechie_node pn, const char* ligne)
+/*
+ * Fonction: addTypeToFlechieList
+ * -----------------
+ * Ajoute les sous_types associés à leur forme fléchie dans la liste des formes fléchies.
+ *
+ *
+ * Première étape: Avancer jusqu'aux 2 points pour skip la première partie (Ver: Adj: Adv: etc.)
+ * Etape suivante: Associer la chaîne de caractère à son sous_type et l'injecter dans la liste des sous_types
+ * Condition de fin: S'arrête jusqu'à la fin de la chaîne de caractère
+ *
+ * pn: p_flechie_node
+ * temp: p_flechie_node
+ * ligne: const char*
+ * i: int
+ * j: int
+ * categorie: char
+ * tout_type: char
+ * mot: char
+ */
+{
     pn->sub_type_list = createEmptyEnumList();
     p_enum_node type_node = NULL;
 

@@ -46,11 +46,13 @@ struct s_enum_node
 
 typedef struct s_enum_node s_enum_node, t_enum_node, *p_enum_node;
 
+
 p_enum_node createEnumNode();
 
-sub_type charToEnum(char* type);
-char* EnumToChar(sub_type sous_type);
-int comparer_char(const char*, const char*);
+sub_type charToEnum(const char* type);
+char* enumToChar(sub_type sous_type);
+
+int compareChar(const char* mot1, const char* mot2);
 
 
 #endif //PROJET_ENUM_NODE_H

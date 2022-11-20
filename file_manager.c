@@ -42,13 +42,13 @@ void create_typed_tree(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree t
         {
             p_base_node ptr_last_node_base = insertBaseTree(tree_verb, forme_base);
             p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
-            add_type_to_list_type(ptr_flechie_node, type);
+            addTypeToFlechieList(ptr_flechie_node, type);
         }
         else if (compare_type(type, "Adj:"))
         {
             p_base_node ptr_last_node_base = insertBaseTree(tree_adj, forme_base);
             p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
-            add_type_to_list_type(ptr_flechie_node, type);
+            addTypeToFlechieList(ptr_flechie_node, type);
         }
         else if (compare_type(type, "Adv")) {
             p_base_node ptr_last_node_base = insertBaseTree(tree_adv, forme_base);
@@ -57,7 +57,7 @@ void create_typed_tree(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree t
         else if (compare_type(type, "Nom:")) {
             p_base_node ptr_last_node_base = insertBaseTree(tree_nom, forme_base);
             p_flechie_node ptr_flechie_node = insertFlechieList(ptr_last_node_base, forme_flechie);
-            add_type_to_list_type(ptr_flechie_node, type);
+            addTypeToFlechieList(ptr_flechie_node, type);
         }
         clear_tab_char(forme_base);
         clear_tab_type_char(type);

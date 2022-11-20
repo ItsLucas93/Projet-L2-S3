@@ -22,44 +22,48 @@ p_enum_node createEnumNode()
 }
 
 
-sub_type charToEnum(char* type)
+sub_type charToEnum(const char* type)
 /*
  * Fonction: charToEnum
  * -----------------
  * Compare la chaîne de caractère et renvoie le sub_type
+ *
+ * type: char*
  */
 {
-    if (comparer_char(type, "Mas")) return Mas;
-    else if (comparer_char(type, "Fem")) return Fem;
-    else if (comparer_char(type, "SG")) return SG;
-    else if (comparer_char(type, "PL")) return PL;
-    else if (comparer_char(type, "InvPL")) return InvPL;
-    else if (comparer_char(type, "InvGen")) return InvGen;
+    if (compareChar(type, "Mas")) return Mas;
+    else if (compareChar(type, "Fem")) return Fem;
+    else if (compareChar(type, "SG")) return SG;
+    else if (compareChar(type, "PL")) return PL;
+    else if (compareChar(type, "InvPL")) return InvPL;
+    else if (compareChar(type, "InvGen")) return InvGen;
 
-    else if (comparer_char(type, "P1")) return P1;
-    else if (comparer_char(type, "P2")) return P2;
-    else if (comparer_char(type, "P3")) return P3;
+    else if (compareChar(type, "P1")) return P1;
+    else if (compareChar(type, "P2")) return P2;
+    else if (compareChar(type, "P3")) return P3;
 
-    else if (comparer_char(type,"Inf")) return Inf;
-    else if (comparer_char(type,"PPas")) return PPas;
-    else if (comparer_char(type,"PPre")) return PPre;
-    else if (comparer_char(type,"IPre")) return IPre;
-    else if (comparer_char(type,"IPSim")) return IPSim;
-    else if (comparer_char(type,"IImp")) return IImp;
-    else if (comparer_char(type,"IFut")) return IFut;
-    else if (comparer_char(type,"SPre")) return SPre;
-    else if (comparer_char(type,"SImp")) return SImp;
-    else if (comparer_char(type,"CPre")) return CPre;
-    else if (comparer_char(type,"ImPre")) return ImPre;
+    else if (compareChar(type,"Inf")) return Inf;
+    else if (compareChar(type,"PPas")) return PPas;
+    else if (compareChar(type,"PPre")) return PPre;
+    else if (compareChar(type,"IPre")) return IPre;
+    else if (compareChar(type,"IPSim")) return IPSim;
+    else if (compareChar(type,"IImp")) return IImp;
+    else if (compareChar(type,"IFut")) return IFut;
+    else if (compareChar(type,"SPre")) return SPre;
+    else if (compareChar(type,"SImp")) return SImp;
+    else if (compareChar(type,"CPre")) return CPre;
+    else if (compareChar(type,"ImPre")) return ImPre;
     else return null;
 }
 
 
-char* EnumToChar(sub_type sous_type)
+char* enumToChar(sub_type sous_type)
 /*
  * Fonction: EnumToType
  * -----------------
  * Compare le sub_type et renvoie sa chaîne de caractère
+ *
+ * sous_type: sub_type
  */
 {
     if (sous_type == Mas) return "Masculin";
@@ -89,20 +93,23 @@ char* EnumToChar(sub_type sous_type)
 }
 
 
-int comparer_char(const char* mot, const char* mot2)
+int compareChar(const char* mot1, const char* mot2)
 /*
- * Fonction: comparer_char
+ * Fonction: compareChar
  * -----------------
  * Compare les deux chaînes de caractère
  * Renvoie 0 si faux et 1 si vrai
+ *
+ * mot1: const char*
+ * mot2: const char*
  */
 {
-    if (strlen(mot) != strlen(mot2)) return 0;
+    if (strlen(mot1) != strlen(mot2)) return 0;
     else
     {
-        for(int i = 0 ; i < strlen(mot) ; i++)
+        for(int i = 0 ; i < strlen(mot1) ; i++)
         {
-            if(mot[i] != mot2[i]) return 0;
+            if(mot1[i] != mot2[i]) return 0;
         }
         return 1;
     }

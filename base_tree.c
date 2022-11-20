@@ -259,7 +259,23 @@ void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_ba
 
 
 void rechercheFormeFlechie(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, const char* chaine)
-// Implémentation en suspend par manque de temps
+/*
+ * Fonction: rechercheFormeFlechie
+ * -----------------
+ * /!\ Non implémenté par manque de temps
+ * Recherche dans l'arbre une forme de base saisie par l'utilisateur
+ *
+ * Parcours les 4 arbres et pour rechercher la forme fléchie pas l'entrée utilisateur
+ *
+ * On coupe la chaine en deux et se positionne dans l'arbre
+ * Puis on cherche dans l'arbre
+ *
+ * Verb: p_base_tree
+ * Adj: p_base_tree
+ * Adv: p_base_tree
+ * Nom: p_base_tree
+ * chaine: const char*
+ */
 {
 
     srand(time(NULL));
@@ -300,47 +316,26 @@ void rechercheFormeFlechie(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p
     }
 }
 
-p_flechie_node extraire_random_flechie(p_base_tree tree)
+char* extraireRandomBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, int select_tree)
+/*
+ * Fonction: extraireRandomBase
+ * -----------------
+ * Extrait une forme de base au hasard
+ *
+ * Parcours l'un des 4 arbres au hasard
+ *
+ * On regarde aléatoirement un fils non-NULL et on rentre dedans.
+ * On fait l'action précédente jusqu'à tomber sur un node qui possède des formes fléchies.
+ * À ce moment-là, on randomise 1 chance sur 2 pour s'arrêter ou continuer.
+ * Si on s'arrête, on retourne la chaine de caractère de la forme de base.
+ *
+ * Verb: p_base_tree
+ * Adj: p_base_tree
+ * Adv: p_base_tree
+ * Nom: p_base_tree
+ * select_tree: int (0 = aléatoire [Par défaut]; 1 = Verb ; 2 = Adj ; 3 = Adv : 4 = Nom)
+ */
 {
-    srand(time(NULL));
-    int letter = rand() % 26; // aléatoirement l'abre commençant par une lettre
-
-    p_base_node node = tree->root[letter]; // on va dans le premier noeud de l'arbre
-
-    int suite = 1;
-    int i;
-
-    while (node->nb_forme_flechie == 0 || suite == 1)
-    { //tanque je n'atteint pas une forme fléchie et qu'il existe une suite
-        suite = 0;
-        i = rand() % 26;
-
-        while(node->fils[i] != NULL)
-        { //je vais dans un fils aléatoirement
-            i = rand() % 26;
-        }
-
-        node = node->fils[i]; // je vais dans le fils
-
-        int est_vide = 1; //je regarde si il possède des fils
-        for (int j = 0 ; j < 26 ; j++)
-        {
-            if (node->fils[j] != NULL)
-            {
-                est_vide = 0;
-            }
-        }
-        if(node->nb_forme_flechie != 0 && est_vide == 0)
-        {// si oui on tire àléatoirement une pièce pour savoir si on continue ou si on s'arrête
-            suite = rand() % 2;
-        }
-    }
-
-    return node->flechie_list->head; //on renvoie les formes fléchies
-}
-
-
-char* extraire_random_base(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, int select_tree){
     char* base = (char*) malloc (ALPHABET_SIZE * sizeof(char));
     for (int z = 0; z < ALPHABET_SIZE ; z++) base[z] = '\0';
 

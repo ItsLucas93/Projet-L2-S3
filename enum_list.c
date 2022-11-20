@@ -20,6 +20,15 @@ p_enum_list createEmptyEnumList()
 }
 
 int isEnumInList(p_enum_list t, sub_type sous_type)
+/*
+ * Fonction: isEnumInList
+ * -----------------
+ * Recherche dans la liste si le sous_type est présent
+ * Retourne 1 si oui, sinon 0
+ *
+ * p: p_enum_list
+ * temp: p_enum_node
+ */
 {
     p_enum_node temp = t->head;
     while (temp != NULL && temp->value != sous_type)
@@ -44,7 +53,7 @@ void printEnumList(p_enum_list p)
 
     while(temp != NULL)
     {
-        printf("%s ", EnumToChar(temp->value));
+        printf("%s ", enumToChar(temp->value));
         temp = temp->next;
     }
     printf(";\n");

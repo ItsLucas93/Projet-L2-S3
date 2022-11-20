@@ -73,6 +73,7 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
             }
             case '3': {
                 // Appel de la génération 3
+                create_sentence_3(Ver, Adj, Adv, Nom);
                 break;
             }
             case '4': {

@@ -430,3 +430,190 @@ char* extraireRandomBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_b
     base[c + 1] = '\0';
     return base; //je renvoie la forme de base
 }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ *
+ */
+
+struct s_pile_char
+{
+    char value;
+    struct  s_pile_char* next;
+};
+typedef struct s_pile_char s_pile_char,t_pile_char,*p_pile_char;
+
+struct s_pile_node{
+    p_base_node value;
+    struct s_pile_node* next;
+};
+typedef  struct s_pile_node s_pile_node,t_pile_node,*p_pile_node;
+
+int node_in_pile(p_pile_node pile,p_base_node node){
+    p_pile_node pile1=pile;
+    while(pile1!=NULL){
+        if(pile1==node){
+            return 1;
+        }
+        pile1=pile1->next;
+    }
+    return 0;
+};
+
+void empile_char(p_pile_char mot,char lettre){
+    p_pile_char node;
+    node=(p_pile_char)malloc(sizeof(t_pile_char));
+    node->value=lettre;
+
+    node->next=mot;
+    mot=node;
+}
+
+char depile_char(p_pile_char pile){
+    char val;
+    if(pile->value==NULL){
+        val=pile->value;
+        pile=pile->next;
+        free(pile);
+    }
+    else{
+        val=' ';
+    }
+    return val;
+}
+
+void empile_node(p_pile_node pile,p_base_node node){
+    p_pile_node temp;
+    temp=(p_pile_node)malloc(sizeof(t_pile_node));
+    temp->value=node;
+
+    temp->next=pile;
+    pile=temp;
+}
+
+p_base_node depile_node(p_pile_node pile){
+    p_base_node val;
+    if(pile->value!=NULL){
+        val=pile->value;
+        pile=pile->next;
+        free(pile);
+    }
+    else{
+        val=NULL;
+    }
+    return val;
+}
+
+
+int forme_flechie_in_list(p_flechie_list list, char* mot){
+    p_flechie_node list1=list->head;
+    while(list1!=NULL){
+        if(compareChar(list1->value,mot)){
+            return 1;
+        }
+        list1=list1->next;
+    }
+    return 0;
+}
+
+int fils_vide(p_base_node node){
+    p_base_node temp=node;
+    for(int i=0;i<26;i++){
+        if(temp->fils[i]!=NULL){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+void research_flechie_form(char* flechie,p_base_tree categorie){
+    int idx=(int)flechie[0]-97;
+    p_base_node node;
+    node=categorie->root[idx]; // on prend l'arbre associé à la première lettre du mot
+
+    p_pile_node search;// on définit la première pile qui sert à parcourir l'arbre
+    search=(p_pile_node) malloc(sizeof(t_pile_node));
+    search->next=NULL;
+    search->value=node;
+
+    p_pile_node un_search;// on définit la seconde pile qui sert à stocker les précedents noeuds parcouru
+    un_search=(p_pile_node) malloc(sizeof(t_pile_node));
+    un_search->value=NULL;
+    un_search->next=NULL;
+
+    p_pile_char mot;// on définit une pile qui sert à stocker la forme de base si on la trouve
+    mot=(p_pile_char)malloc(sizeof(t_pile_char));
+    mot->value=flechie[0];
+
+    p_base_node temp;
+    temp=search->value; //pointeur temporaire qui permet de prendre le premier élément de la première pile
+    int found=0;
+    int i;
+    while(search->value!=NULL && found==0){
+        i=0;
+        while(i<26){ // si on est déjà passé par là
+            if(node_in_pile(un_search,temp)){
+                //si on est à la fin on dépile
+                if(i==25){
+                    empile_node(un_search,depile_node(search));
+                    temp=search->value;
+                    i=0;
+                    depile_char(mot);
+                }
+                //sinon on passe au suivant
+                else{
+                    i++;
+                    temp=search->value->fils[i];
+                }
+
+            }
+            else{ // si on y es pas encore passé
+                if(temp->nb_forme_flechie>0){// si on atteint une forme fléchie
+                    // si la forme est dedans les formes fléchies du noeuds
+                    if(forme_flechie_in_list(temp->flechie_list,flechie)){
+                        found=1;
+                        break;
+                    }
+                    // si la forme fléchie n'est pas présent dans le noeud
+                    else{
+                        // si toute les fils sont nuls on dépile search dans un_search
+                        if(fils_vide(temp)){
+                            empile_node(un_search,depile_node(search));
+                            temp=search->value;
+                            i=0;
+                            depile_char(mot);
+                        }
+                        //si il existe une suite on passe au prochain noeuds
+                        else{
+                            empile_node(un_search,temp);
+                            empile_node(search,temp->fils[0]);
+                            temp=search->value;
+                            empile_char(mot,search->value->value);
+                            i=0;
+
+                        }
+                    }
+                }
+                else{ // si on ne trouve pas de forme fléchie on continue de parcourir, en empile les états
+                    empile_node(search,temp->fils[0]);
+                    temp=search->value;
+                    empile_char(mot,search->value->value);
+                    i=0;
+
+                }
+            }
+        }
+    }
+
+    if(found==1){
+        printf("la forme_fléchie %s est présente dans cette catégorie",flechie);
+    }
+    else{
+        printf("la forme fléchie %s n'est pas présente dans cette catégorie",flechie);
+    }
+
+    free(un_search);
+    free(search);
+    free(mot);
+
+}

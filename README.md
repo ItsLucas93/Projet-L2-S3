@@ -117,8 +117,6 @@ Vous pouvez lancer le programme dans l'[IDE CLion](https://www.jetbrains.com/fr-
 
 Incluez tous les fichiers `*.c` dans la compilation.
 
-Il se peut que lors de la compilation, une erreur `No such file or directory` apparaît. Dans ce cas là, veuillez vous rendre dans le fichier `file_manager.h` et modifiez la variable `PATH` par le chemin vers le dictionnaire.
-
 Lorsque vous exécuterez le programme, les arbres seront construits durant les 5-10 premières secondes. Il vous sera ensuite proposé un menu avec les diverses fonctionnalités. Pour accéder aux fonctionnalités de **4 à 6** par exemple, depuis le menu principal, saisissez 4. Vous aurez ensuite la possibilité de revenir dans le menu principal.
 
 # Auteurs du projet

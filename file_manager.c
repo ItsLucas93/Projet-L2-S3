@@ -54,7 +54,7 @@ void createTypedTrees(p_base_tree tree_nom, p_base_tree tree_adj, p_base_tree tr
     char forme_flechie[ALPHABET_SIZE];
 
     int i = 0;
-    while (i < nbligne) {
+    while ( i < nbligne) {
 
         // printf("%d %d\n",i,nbligne);
         fscanf(input_file, "%s\t%s\t%s", forme_flechie, forme_base, type);

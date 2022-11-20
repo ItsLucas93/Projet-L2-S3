@@ -56,7 +56,7 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
         printf("Menu principal. Choisissez votre menu :\n"
                "1 - Modele 1 : nom - adjectif - verbe - nom\n"
                "2 - Modele 2 : nom - 'qui' - verbe - verbe - nom - adjectif\n"
-               "3 - Modele 3 : (Modele personnalise)\n"
+               "3 - Modele 3 : (Modele personnalise) adverbe - nom - adjectif - verbe\n"
                "4 - Menu de recherche de mots\n"
                "5 - Quitter le programme.\n");
         scanf(" %c", &choix);

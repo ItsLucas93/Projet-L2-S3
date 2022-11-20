@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "phrase.h"
 #include "enum_node.h"
@@ -148,8 +149,8 @@ void create_sentence_3(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_base
                 else if (i == 1) printf(", ");
                 else if (i == 2)
                 {
-                    if (determinant == 0) printf(" le");
-                    else printf(" un");
+                    if (determinant == 0) printf("le");
+                    else printf("un");
                     create_word_genre(Nom, Mas, SG);
                 }
                 else if (i == 3) create_word_genre(Adj, Mas, SG);
@@ -162,8 +163,8 @@ void create_sentence_3(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_base
                 else if (i == 1) printf(", ");
                 else if (i == 2)
                 {
-                    if (determinant == 0) printf(" la");
-                    else printf(" une");
+                    if (determinant == 0) printf("la");
+                    else printf("une");
                     create_word_genre(Nom, Fem, SG);
                 }
                 else if (i == 3) create_word_genre(Adj, Fem, SG);
@@ -178,8 +179,8 @@ void create_sentence_3(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_base
                 else if (i == 1) printf(", ");
                 else if (i == 2)
                 {
-                    if (determinant == 0) printf(" les");
-                    else printf(" des");
+                    if (determinant == 0) printf("les");
+                    else printf("des");
                     create_word_genre(Nom, Mas, PL);
                 }
                 else if (i == 3) create_word_genre(Adj, Mas, PL);
@@ -192,8 +193,8 @@ void create_sentence_3(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_base
                 else if (i == 1) printf(", ");
                 else if (i == 2)
                 {
-                    if (determinant == 0) printf(" les");
-                    else printf(" des");
+                    if (determinant == 0) printf("les");
+                    else printf("des");
                     create_word_genre(Nom, Fem, PL);
                 }
                 else if (i == 3) create_word_genre(Adj, Fem, PL);
@@ -307,7 +308,10 @@ void create_word_adv(p_base_tree tree)
         node = node->fils[i];  // je vais dans le fils
 
         if (node->nb_forme_flechie > 0) {
-            printf(" %s", node->flechie_list->head->value);
+            char mot[LENGHT_MAX];
+            strcpy(mot, node->flechie_list->head->value);
+            mot[0] = mot[0] - 32;
+            printf("%s", mot);
         }
     }
 }

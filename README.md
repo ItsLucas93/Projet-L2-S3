@@ -1,7 +1,12 @@
 # Générateur automatique de phrases
 PRJ-TI301 - Générateur automatique de phrases
 
+## Récupérer le projet
+
+Vous pouvez récupérer le projet sur le répertoire [Github](https://github.com/ItsLucas93/Projet-L2-S3.git) ou via la commande `git clone https://github.com/ItsLucas93/Projet-L2-S3.git`.
+
 ## Description du projet
+
 L’objectif de ce projet est de créer un programme qui génère automatiquement des phrases.
 Le programme comporte 4 types de mots : **Nom**, **Adjectif**, **Adverbe** et **Verbe**.
 Les mots comportent aussi des sous-types grammaticaux (*Masculin*, *Féminin*, *Singulier*, *Pluriel*, …).

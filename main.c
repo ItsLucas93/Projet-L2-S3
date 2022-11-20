@@ -15,7 +15,7 @@ int main()
     p_base_tree Adv = createEmptyBaseTree();
     p_base_tree Ver = createEmptyBaseTree();
 
-    create_typed_tree(Nom, Adj, Adv, Ver);
+    createTypedTrees(Nom, Adj, Adv, Ver);
 
     printf("Initialisation des arbres termine.\n");
 

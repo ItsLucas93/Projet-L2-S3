@@ -259,36 +259,44 @@ void rechercheFormeBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_ba
 
 
 void rechercheFormeFlechie(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_base_tree Nom, const char* chaine)
+// Implémentation en suspend par manque de temps
 {
 
     srand(time(NULL));
 
-    int idx = (int) chaine[0];
+    int idx = (int) chaine[0] - 97;
     p_base_node pn = Verb->root[idx];
+
     for (int i = 1 ; i <= strlen(chaine) / 2 ; i++)
     {
-        idx = (int) chaine[i];
-        pn = pn->fils[(int) chaine[idx]];
+        idx = (int) chaine[i] - 97;
+        pn = pn->fils[idx];
     }
 
     p_base_node temp = pn;
-
-    while(temp->nb_forme_flechie != 0)
+    int suite = 1;
+    while (suite != 0)
     {
-        idx = rand() % 26;
-        while(temp->fils[idx] == NULL)
+        suite = 0;
+        while(temp->nb_forme_flechie != 0)
         {
             idx = rand() % 26;
+            while(temp->fils[idx] == NULL)
+            {
+                idx = rand() % 26;
+            }
+            temp = temp->fils[idx];
         }
-        temp = temp->fils[idx];
-    }
 
-    p_flechie_node temp_flechie_node = isFlechieCharInList(temp->flechie_list, chaine);
-    if (temp_flechie_node != NULL)
-    {
-        printf("-=-=-=-=-=-= Forme Fléchie trouvé =-=-=-=-=-=-\n"
-               "%s : ", temp_flechie_node->value);
-        printFlechieList(pn->flechie_list);
+        p_flechie_node temp_flechie_node = isFlechieCharInList(temp->flechie_list, chaine);
+        if (temp_flechie_node != NULL)
+        {
+            setbuf(stdout, 0);
+            printf("-=-=-=-=-=-= Forme Fléchie trouvé =-=-=-=-=-=-\n"
+                   "%s : ", temp_flechie_node->value);
+            printFlechieList(pn->flechie_list);
+        }
+        else suite = 1;
     }
 }
 

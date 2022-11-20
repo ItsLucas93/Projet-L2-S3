@@ -20,6 +20,7 @@ int main()
 
     create_typed_tree(Nom, Adj, Adv, Ver);
 
+    setbuf(stdout, 0);
     printf("Initialisation des arbres termine.\n");
 
     // Menu principal
@@ -53,6 +54,7 @@ void menu_principal(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p_base_tr
     char choix = '-';
     do
     {
+        setbuf(stdout, 0);
         printf("Menu principal. Choisissez votre menu :\n"
                "1 - Modele 1 : nom - adjectif - verbe - nom\n"
                "2 - Modele 2 : nom - 'qui' - verbe - verbe - nom - adjectif\n"
@@ -95,6 +97,7 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
     char choix = '-';
     do
     {
+        setbuf(stdout, 0);
         printf("Menu recherche de mots. Faites votre choix :\n"
                "1. Rechercher un mot parmi les formes de base\n"
                "2. Mot aleatoire parmi les formes de base\n"
@@ -105,12 +108,14 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
             case '1':
             {
                 // Recherche forme de base
-                char chaine[30];
-
+                /*
+                char chaine_1[30];
+                setbuf(stdout, 0);
                 printf("Inserez un mot : ");
-                scanf(" %s", chaine);
-                rechercheFormeBase(Ver, Adj, Adv, Nom, chaine);
-
+                scanf(" %s", chaine_1);
+                rechercheFormeBase(Ver, Adj, Adv, Nom, chaine_1);
+                */
+                printf("// Implémentation en suspend par manque de temps\n");
                 break;
             }
             case '2':
@@ -123,7 +128,11 @@ void menu_recherche_de_mots(p_base_tree Nom, p_base_tree Adj, p_base_tree Adv, p
             case '3':
             {
                 // Recherche
-                rechercheFormeFlechie(Ver, Adj, Adv, Nom);
+                char chaine_2[30];
+
+                printf("Inserez un mot : ");
+                scanf(" %s", chaine_2);
+                rechercheFormeFlechie(Ver, Adj, Adv, Nom, chaine_2);
                 break;
             }
             case '4':

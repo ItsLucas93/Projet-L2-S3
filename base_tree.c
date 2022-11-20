@@ -434,7 +434,7 @@ char* extraireRandomBase(p_base_tree Verb, p_base_tree Adj, p_base_tree Adv, p_b
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  *
  */
-
+/*
 struct s_pile_char
 {
     char value;
@@ -616,4 +616,4 @@ void research_flechie_form(char* flechie,p_base_tree categorie){
     free(search);
     free(mot);
 
-}
+}*/

@@ -173,8 +173,8 @@ void createSentenceModel3(p_base_tree Ver, p_base_tree Adj, p_base_tree Adv, p_b
 /*
  * Fonction: createSentenceModel3
  * -----------------
- * Génère et affiche une phrase selon le modèle 2=3 :
- * Modèle : Nom – ‘qui’ – Verbe – Verbe – Nom – Adjectif
+ * Génère et affiche une phrase selon le modèle 3 :
+ * Modèle : Adverbe - ',' - Nom - Adjectif - Verbe
  *
  * Le temps du verbe est choisi aléatoirement entre les temps de l'Indicatif simple
  * Le genre (Mas, Fem), le nombre (SG, PL) et le determinant (Un/Une/Des/Le/La/Les)

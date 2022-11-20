@@ -9,7 +9,7 @@ Les mots comportent aussi des sous-types grammaticaux (*Masculin*, *Féminin*, *
 Ces données sont conservées dans le fichier [./dictionnaire/dictionnaire_non_accentue.txt](https://github.com/ItsLucas93/Projet-L2-S3/blob/main/dictionnaire/dictionnaire_non_accentue.txt).
 (*Le projet n'utilise pas de dictionnaire avec accents.*)
 
-Le projet comprend plusieurs structures : `t_base_tree` `t_base_node` `t_flechie_tree` `t_flechie_node` `t_enum_list` `t_enum_node`
+Le projet comprend plusieurs structures : `t_base_tree` `t_base_node` `t_flechie_list` `t_flechie_node` `t_enum_list` `t_enum_node`
 
 ### Structure des fichiers
 

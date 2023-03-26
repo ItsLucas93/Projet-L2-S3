@@ -1,5 +1,5 @@
 # Générateur automatique de phrases
-PRJ-TI301 - Générateur automatique de phrases
+PRJ-TI301 - Algorithmique et structure de données 2
 
 ## Récupérer le projet
 
@@ -134,4 +134,3 @@ Groupe de projet constitué de :
 
 * KOCOGLU Lucas
 * NOIROT-RATHAR Elisée
-* PINEDE Luka
